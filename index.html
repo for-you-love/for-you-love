@@ -3,429 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>For You 💗</title>
 
 <style>
-
 *{
-box-sizing:border-box;
-}
-
-html,body{
-margin:0;
-padding:0;
-width:100%;
-min-height:100%;
+  box-sizing:border-box;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb);
-min-height:100vh;
-overflow-x:hidden;
-overflow-y:auto;
-display:flex;
-justify-content:center;
-align-items:flex-start;
-padding:30px 15px 60px;
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#ffd6e7,#fff0f6,#ffd1e3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px 15px;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
 .card{
-width:100%;
-max-width:430px;
-background:rgba(255,255,255,.9);
-border-radius:25px;
-padding:30px 22px;
-text-align:center;
-box-shadow:0 15px 40px rgba(0,0,0,.15);
-margin:auto;
-position:relative;
-z-index:2;
+  width:100%;
+  max-width:430px;
+  background:rgba(255,255,255,.75);
+  padding:30px 22px;
+  border-radius:28px;
+  text-align:center;
+  box-shadow:0 10px 35px rgba(255,80,140,.2);
+  backdrop-filter:blur(10px);
 }
 
 h1{
-color:#ff4f81;
-font-size:25px;
-margin:15px 0;
+  color:#e83e7c;
+  font-size:25px;
 }
 
-p{
-color:#555;
-font-size:17px;
-line-height:1.8;
+.message{
+  color:#555;
+  font-size:17px;
+  line-height:1.8;
 }
 
 input{
-width:100%;
-padding:15px;
-margin:8px 0;
-border:2px solid #ffd0dc;
-border-radius:15px;
-font-size:16px;
-outline:none;
+  width:100%;
+  padding:15px;
+  margin:8px 0;
+  border:1px solid #ffc0d7;
+  border-radius:15px;
+  outline:none;
+  font-size:16px;
+  text-align:center;
 }
 
 button{
-width:100%;
-padding:14px;
-margin-top:18px;
-border:0;
-border-radius:20px;
-background:linear-gradient(135deg,#ff5f8f,#ff85a8);
-color:white;
-font-size:17px;
-font-weight:bold;
-cursor:pointer;
-box-shadow:0 6px 15px rgba(255,80,130,.3);
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+  border:0;
+  border-radius:18px;
+  background:#ff5c93;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 button:active{
-transform:scale(.97);
+  transform:scale(.97);
 }
 
 .heart{
-font-size:65px;
-animation:beat 1s infinite;
+  font-size:55px;
+  animation:beat 1s infinite;
 }
 
 @keyframes beat{
-0%,100%{transform:scale(1);}
-50%{transform:scale(1.15);}
+  50%{transform:scale(1.15);}
 }
 
 .page{
-display:none;
+  display:none;
 }
 
 .page.active{
-display:block;
+  display:block;
 }
 
 #secret{
-display:none;
-margin-top:25px;
-padding:22px 16px;
-border-radius:20px;
-background:#fff0f5;
-border:2px solid #ffc4d6;
-color:#555;
-font-size:18px;
-line-height:2;
-animation:showSecret .6s ease;
-}
-
-@keyframes showSecret{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+  display:none;
+  margin-top:22px;
+  padding:20px 15px;
+  border-radius:20px;
+  background:#fff1f6;
+  color:#555;
+  font-size:18px;
+  line-height:2;
 }
 
 .flying{
-position:fixed;
-bottom:10px;
-pointer-events:none;
-z-index:10;
+  position:fixed;
+  bottom:-40px;
+  pointer-events:none;
+  z-index:99;
 }
-
-.small{
-font-size:14px;
-color:#999;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- NAME PAGE -->
+<!-- START -->
+<div class="card page active" id="start">
+  <div class="heart">💗</div>
 
-<div class="card page active" id="namePage">
+  <h1>မင်းအတွက်ပါ 💕</h1>
 
-<div class="heart">💗</div>
+  <input id="myName" type="text" placeholder="မင်းနာမည် 💗">
 
-<h1>မင်းအတွက် သီးသန့်လေး 💕</h1>
+  <input id="crushName" type="text" placeholder="Crush နာမည် 💕">
 
-<input
-id="myName"
-type="text"
-placeholder="မင်းနာမည် 💗">
-
-<input
-id="crushName"
-type="text"
-placeholder="Crush နာမည် 💕">
-
-<button type="button" onclick="startLove()">
-💌 စတင်မယ်
-</button>
-
-<p class="small">
-သီးသန့်လေး ဖန်တီးထားတာပါ 🌷
-</p>
-
+  <button onclick="startLove()">💌 စတင်မယ်</button>
 </div>
 
 
-<!-- STEP 1 -->
-
-<div class="card page" id="step1">
-
-<div class="heart">🌷</div>
-
-<h1>မင်းအတွက်ပါ 💗</h1>
-
-<p>
-ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷
-</p>
-
-<button type="button" onclick="nextStep()">
-ဆက်ကြည့်မယ် 💕
-</button>
-
+<!-- PAGE 1 -->
+<div class="card page" id="page1">
+  <div class="heart">🌷</div>
+  <h1>ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷</h1>
+  <button onclick="nextPage()">ဆက်သွားမယ် 💗</button>
 </div>
 
 
-<!-- STEP 2 -->
-
-<div class="card page" id="step2">
-
-<div class="heart">💌</div>
-
-<h1>စာလေးတစ်ခုရှိတယ် 🤭</h1>
-
-<p>
-မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭
-</p>
-
-<button type="button" onclick="nextStep()">
-ဆက်ကြည့်မယ် 💗
-</button>
-
+<!-- PAGE 2 -->
+<div class="card page" id="page2">
+  <div class="heart">💗</div>
+  <h1>မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭</h1>
+  <button onclick="nextPage()">ဆက်သွားမယ် 💕</button>
 </div>
 
 
-<!-- STEP 3 -->
-
-<div class="card page" id="step3">
-
-<div class="heart">😊</div>
-
-<h1>မင်းနဲ့ဆို...</h1>
-
-<p>
-မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း ပျော်မိတယ်။
-</p>
-
-<button type="button" onclick="nextStep()">
-ဆက်ကြည့်မယ် 💕
-</button>
-
+<!-- PAGE 3 -->
+<div class="card page" id="page3">
+  <div class="heart">💖</div>
+  <h1>မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း ပျော်မိတယ်။</h1>
+  <button onclick="nextPage()">ဆက်သွားမယ် 🌷</button>
 </div>
 
 
-<!-- STEP 4 -->
-
-<div class="card page" id="step4">
-
-<div class="heart">🙈</div>
-
-<h1>တကယ်တော့…</h1>
-
-<p>
-တကယ်တော့… မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈
-</p>
-
-<button type="button" onclick="nextStep()">
-ဆက်ကြည့်မယ် 💗
-</button>
-
+<!-- PAGE 4 -->
+<div class="card page" id="page4">
+  <div class="heart">🙈</div>
+  <h1>တကယ်တော့… မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈</h1>
+  <button onclick="nextPage()">ဆက်သွားမယ် 💗</button>
 </div>
 
 
-<!-- STEP 5 -->
-
-<div class="card page" id="step5">
-
-<div class="heart">💖</div>
-
-<h1>နောက်ဆုံးတစ်ခုလေးပဲ…</h1>
-
-<p>
-မင်းအတွက် ရေးထားတာပါ 💗
-</p>
-
-<button type="button" onclick="nextStep()">
-💌 ဖွင့်ကြည့်မယ်
-</button>
-
+<!-- PAGE 5 -->
+<div class="card page" id="page5">
+  <div class="heart">💌</div>
+  <h1>နောက်ဆုံးတစ်ခုလေးပဲ… မင်းအတွက် ရေးထားတာပါ 💗</h1>
+  <button onclick="showFinal()">💌 ဖွင့်ကြည့်မယ်</button>
 </div>
 
 
 <!-- FINAL -->
-
 <div class="card page" id="final">
+  <div class="heart" id="finalHeart">💗</div>
 
-<div class="heart" id="surpriseHeart">
-💗
-</div>
+  <h1 id="finalTitle">မင်းအတွက်ပါ 🌷</h1>
 
-<h1 id="finalTitle">
-မင်းအတွက်ပါ 🌷
-</h1>
+  <p class="message">
+    နောက်ဆုံးအနေနဲ့<br>
+    မင်းအတွက် သီးသန့်စာလေးတစ်ခုရှိတယ် 💕
+  </p>
 
-<p>
-ဒီအထိဖတ်လာပေးလို့ ကျေးဇူးပါ 💕
-</p>
+  <button id="secretButton" onclick="showSecret()">
+    💌 သီးသန့်စာလေးဖွင့်မယ်
+  </button>
 
-<button
-type="button"
-id="secretButton"
-onclick="showSurprise()">
-
-💌 သီးသန့်စာလေးဖွင့်မယ်
-
-</button>
-
-<div id="secret"></div>
-
+  <div id="secret"></div>
 </div>
 
 
 <script>
 
-let myName="";
-let crushName="";
-let currentStep=0;
+let myName = "";
+let crushName = "";
+
+let currentPage = 0;
 
 
+/* START */
 function startLove(){
 
-myName=document.getElementById("myName").value.trim();
+  myName = document.getElementById("myName").value.trim();
+  crushName = document.getElementById("crushName").value.trim();
 
-crushName=document.getElementById("crushName").value.trim();
+  if(myName === "" || crushName === ""){
+    alert("နာမည် ၂ ခုလုံးထည့်ပေးပါနော် 💗");
+    return;
+  }
 
-if(myName===""){
-alert("မင်းနာမည်လေးထည့်ပါ 💗");
-return;
-}
+  document.getElementById("start").classList.remove("active");
 
-if(crushName===""){
-alert("Crush နာမည်လေးထည့်ပါ 💕");
-return;
-}
+  currentPage = 1;
 
-document.getElementById("namePage").classList.remove("active");
-
-currentStep=1;
-
-document.getElementById("step1").classList.add("active");
-
+  document.getElementById("page1").classList.add("active");
 }
 
 
-function nextStep(){
+/* NEXT */
+function nextPage(){
 
-document.querySelectorAll(".page").forEach(function(page){
-page.classList.remove("active");
-});
+  document.getElementById("page" + currentPage)
+    .classList.remove("active");
 
-currentStep++;
+  currentPage++;
 
-if(currentStep===2){
-document.getElementById("step2").classList.add("active");
-}
-
-else if(currentStep===3){
-document.getElementById("step3").classList.add("active");
-}
-
-else if(currentStep===4){
-document.getElementById("step4").classList.add("active");
-}
-
-else if(currentStep===5){
-document.getElementById("step5").classList.add("active");
-}
-
-else if(currentStep===6){
-
-document.getElementById("final").classList.add("active");
-
-document.getElementById("finalTitle").innerHTML=
-crushName+" အတွက်ပါ 🌷";
-
-}
-
+  document.getElementById("page" + currentPage)
+    .classList.add("active");
 }
 
 
-function showSurprise(){
+/* PAGE 5 → FINAL */
+function showFinal(){
 
-/* SECRET စာကို အရင်ဆုံး ဖော်ပြ */
+  document.getElementById("page5")
+    .classList.remove("active");
 
-let secret=document.getElementById("secret");
+  document.getElementById("final")
+    .classList.add("active");
 
-secret.style.display="block";
+  document.getElementById("finalTitle").innerHTML =
+    crushName + " အတွက်ပါ 🌷";
 
-secret.innerHTML=
-"<b>"+crushName+" ရေ 💕</b><br><br>"+
-"ဒီစာမျက်နှာလေးကို "+
-myName+
-" က မင်းအတွက် သီးသန့်လုပ်ထားတာပါ။<br><br>"+
-"မင်းပြုံးမိရင် ငါလည်း ပျော်ပြီ 🌷<br><br>"+
-"💗 💕 💖 💕 💗";
-
-
-/* BUTTON စာပြောင်း */
-
-document.getElementById("secretButton").innerHTML=
-"💗 စာလေးဖွင့်ပြီးပြီ 💗";
-
-
-/* HEART */
-
-document.getElementById("surpriseHeart").innerHTML=
-"💖💖💖";
-
-
-/* FLOATING HEARTS */
-
-for(let i=0;i<25;i++){
-
-let heart=document.createElement("div");
-
-heart.className="flying";
-
-heart.innerHTML=
-["💗","💕","💖","🌸","✨"]
-[Math.floor(Math.random()*5)];
-
-heart.style.left=
-Math.random()*100+"vw";
-
-heart.style.fontSize=
-(18+Math.random()*25)+"px";
-
-document.body.appendChild(heart);
-
-let animation=heart.animate(
-
-[
-{
-transform:"translateY(0) rotate(0deg)",
-opacity:1
-},
-{
-transform:"translateY(-100vh) rotate(360deg)",
-opacity:0
+  window.scrollTo(0,0);
 }
-],
 
-{
-duration: 
+
+/* SECRET */
+function showSecret(){
+
+  let secret = document.getElementById("secret");
+
+  secret.style.display = "block";
+
+  secret.innerHTML =
+    crushName + " ရေ 💕<br><br>" +
+    "ဒီစာမျက်နှာလေးကို " +
+    myName +
+    " က မင်းအတွက် သီးသန့်လုပ်ထားတာပါ။<br><br>" +
+    "မင်းနဲ့ စကားပြောရတာကို သဘောကျတယ်။ 💗<br><br>" +
+    "မင်းပြုံးမိရင် ငါလည်း ပျော်ပြီ 🌷<br><br>" +
+    "💗 💕 💖 💕 💗";
+
+  document.getElementById("secretButton").innerHTML =
+    "💗 စာလေးဖွင့်ပြီးပြီ";
+
+  document.getElementById("finalHeart").innerHTML =
+    "💖";
+
+  /* HEARTS */
+  for(let i=0; i<25; i++){
+
+    let heart = document.createElement("div");
+
+    heart.className = "flying";
+
+    heart.innerHTML =
+      ["💗","💕","💖","🌸","✨"]
+      [Math.floor(Math.random()*5)];
+
+    heart.style.left =
+      Math.random()*100 + "vw";
+
+    heart.style.fontSize =
+      (18 + Math.random()*25) + "px";
+
+    document.body.appendChild(heart);
+
+    heart.animate(
+      [
+        {
+          transform:"translateY(0) rotate(0deg)",
+          opacity:1
+        },
+        {
+          transform:
+          "translateY(-110vh) rotate(360deg)",
+          opacity:0
+        }
+      ],
+      {
+        duration:2500 + Math.random()*1500,
+        easing:"ease-out"
+      }
+    );
+
+    setTimeout(function(){
+      heart.remove();
+    },4500);
+  }
+
+  setTimeout(function(){
+    secret.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+  },100);
+
+}
+
+</script>
+
+</body>
+</html> 
