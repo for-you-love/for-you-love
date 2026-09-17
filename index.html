@@ -1,12 +1,15 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="my">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You 💗</title>
+
+<title>For You </title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -24,7 +27,7 @@ body{
 .card{
   width:100%;
   max-width:430px;
-  background:rgba(255,255,255,.8);
+  background:rgba(255,255,255,.85);
   padding:30px 22px;
   border-radius:28px;
   text-align:center;
@@ -32,8 +35,13 @@ body{
   backdrop-filter:blur(10px);
 }
 
-.page{display:none}
-.page.active{display:block}
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
 
 h1{
   color:#e83e7c;
@@ -57,7 +65,9 @@ input,textarea{
   font-family:Arial,sans-serif;
 }
 
-input{text-align:center}
+input{
+  text-align:center;
+}
 
 textarea{
   min-height:130px;
@@ -82,7 +92,9 @@ button{
 }
 
 @keyframes beat{
-  50%{transform:scale(1.15)}
+  50%{
+    transform:scale(1.15);
+  }
 }
 
 #secret{
@@ -94,7 +106,6 @@ button{
   color:#555;
   font-size:18px;
   line-height:2;
-  white-space:normal;
 }
 
 #shareBox{
@@ -129,44 +140,60 @@ button{
 
 <body>
 
-<!-- CREATE -->
+<!-- MUSIC -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="Gfatt%20ထာဝရထက်တရက်-1.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- CREATE PAGE -->
 <div class="card page active" id="create">
 
-  <div class="heart">💗</div>
+  <div class="heart"></div>
 
-  <h1>ကိုယ်ပိုင် Crush Link 💕</h1>
+  <h1>ကိုယ်ပိုင် Crush Link </h1>
 
   <p class="small">
     ကိုယ်ကြိုက်တဲ့စာရေးပြီး Link ဖန်တီးပါ။<br>
-    ပြီးရင် Link ကို သူ့ဆီပို့လို့ရပါတယ် 💌
+    ပြီးရင် Link ကို သူ့ဆီပို့လို့ရပါတယ် 
   </p>
 
-  <input id="myName" type="text" placeholder="မင်းနာမည် 💗">
+  <input
+    id="myName"
+    type="text"
+    placeholder="မင်းနာမည် "
+  >
 
-  <input id="crushName" type="text" placeholder="Crush နာမည် 💕">
+  <input
+    id="crushName"
+    type="text"
+    placeholder="Crush နာမည် "
+  >
 
-  <textarea id="myMessage"
-    placeholder="သီးသန့်စာလေးကို ဒီမှာရေးပါ ✍️"></textarea>
+  <textarea
+    id="myMessage"
+    placeholder="သီးသန့်စာလေးကို ဒီမှာရေးပါ "
+  ></textarea>
 
   <button onclick="createLink()">
-    💌 Link ဖန်တီးမယ်
+     Link ဖန်တီးမယ်
   </button>
 
   <div id="shareBox">
 
     <p class="small">
-      🎉 Link ရပြီ!<br>
+       Link ရပြီ!<br>
       ဒီ Link ကို Copy လုပ်ပြီး ပို့လိုက်ပါ။
     </p>
 
     <div id="shareLink"></div>
 
     <button onclick="copyLink()">
-      📋 Link Copy လုပ်မယ်
+       Link Copy လုပ်မယ်
     </button>
 
     <button onclick="openLink()">
-      💗 ကိုယ်တိုင်ကြည့်မယ်
+       ကိုယ်တိုင်ကြည့်မယ်
     </button>
 
   </div>
@@ -177,14 +204,14 @@ button{
 <!-- PAGE 1 -->
 <div class="card page" id="page1">
 
-  <div class="heart">🌷</div>
+  <div class="heart"></div>
 
   <h1>
-    ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷
+    ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 💗
+    ဆက်သွားမယ် 
   </button>
 
 </div>
@@ -193,14 +220,14 @@ button{
 <!-- PAGE 2 -->
 <div class="card page" id="page2">
 
-  <div class="heart">💗</div>
+  <div class="heart"></div>
 
   <h1>
-    မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭
+    မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 💕
+    ဆက်သွားမယ် 
   </button>
 
 </div>
@@ -209,14 +236,14 @@ button{
 <!-- PAGE 3 -->
 <div class="card page" id="page3">
 
-  <div class="heart">💖</div>
+  <div class="heart"></div>
 
   <h1>
     မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း ပျော်မိတယ်။
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 🌷
+    ဆက်သွားမယ် 
   </button>
 
 </div>
@@ -228,11 +255,11 @@ button{
   <div class="heart">🙈</div>
 
   <h1>
-    တကယ်တော့… မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈
+    တကယ်တော့ မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 💗
+    ဆက်သွားမယ် 
   </button>
 
 </div>
@@ -241,35 +268,37 @@ button{
 <!-- PAGE 5 -->
 <div class="card page" id="page5">
 
-  <div class="heart">💌</div>
+  <div class="heart"></div>
 
   <h1>
-    နောက်ဆုံးတစ်ခုလေးပဲ… မင်းအတွက် ရေးထားတာပါ 💗
+    နောက်ဆုံးတစ်ခုလေးပဲ မင်းအတွက် ရေးထားတာပါ 
   </h1>
 
   <button onclick="showFinal()">
-    💌 ဖွင့်ကြည့်မယ်
+     ဖွင့်ကြည့်မယ်
   </button>
 
 </div>
 
 
-<!-- FINAL -->
+<!-- FINAL PAGE -->
 <div class="card page" id="final">
 
-  <div class="heart" id="finalHeart">💗</div>
+  <div class="heart" id="finalHeart">
+    
+  </div>
 
   <h1 id="finalTitle">
-    မင်းအတွက်ပါ 🌷
+    မင်းအတွက်ပါ 
   </h1>
 
   <p class="message">
     နောက်ဆုံးအနေနဲ့<br>
-    မင်းအတွက် သီးသန့်စာလေးတစ်ခုရှိတယ် 💕
+    မင်းအတွက် သီးသန့်စာလေးတစ်ခုရှိတယ် 
   </p>
 
   <button id="secretButton" onclick="showSecret()">
-    💌 သီးသန့်စာလေးဖွင့်မယ်
+     သီးသန့်စာလေးဖွင့်မယ်
   </button>
 
   <div id="secret"></div>
@@ -282,14 +311,29 @@ button{
 let myName = "";
 let crushName = "";
 let myMessage = "";
-
 let currentPage = 1;
 
 
-/* URL ထဲက data ဖတ်ခြင်း */
+/* MUSIC */
+
+function startMusic(){
+
+  const music = document.getElementById("bgMusic");
+
+  music.volume = 0.35;
+
+  music.play().catch(function(){});
+
+}
+
+
+/* LINK ကနေဝင်လာတာ စစ် */
+
 function loadFromLink(){
 
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(
+    window.location.search
+  );
 
   const m = params.get("m");
   const c = params.get("c");
@@ -301,41 +345,58 @@ function loadFromLink(){
     crushName = c;
     myMessage = s;
 
-    document.getElementById("create")
-      .classList.remove("active");
+    document
+      .getElementById("create")
+      .classList
+      .remove("active");
 
-    document.getElementById("page1")
-      .classList.add("active");
+    document
+      .getElementById("page1")
+      .classList
+      .add("active");
 
   }
 
 }
 
 
-/* Link ဖန်တီး */
+/* LINK ဖန်တီး */
+
 function createLink(){
 
+  startMusic();
+
   myName =
-    document.getElementById("myName")
-    .value.trim();
+    document
+      .getElementById("myName")
+      .value
+      .trim();
 
   crushName =
-    document.getElementById("crushName")
-    .value.trim();
+    document
+      .getElementById("crushName")
+      .value
+      .trim();
 
   myMessage =
-    document.getElementById("myMessage")
-    .value.trim();
+    document
+      .getElementById("myMessage")
+      .value
+      .trim();
 
-  if(myName === "" ||
-     crushName === "" ||
-     myMessage === ""){
+  if(
+    myName === "" ||
+    crushName === "" ||
+    myMessage === ""
+  ){
 
-    alert("နာမည် ၂ ခုနဲ့ သီးသန့်စာလေး အားလုံးထည့်ပေးပါ 💗");
+    alert(
+      "နာမည် ၂ ခုနဲ့ သီးသန့်စာလေး အားလုံးထည့်ပေးပါ "
+    );
 
     return;
-  }
 
+  }
 
   const base =
     window.location.origin +
@@ -343,88 +404,123 @@ function createLink(){
 
   const link =
     base +
-    "?m=" + encodeURIComponent(myName) +
-    "&c=" + encodeURIComponent(crushName) +
-    "&s=" + encodeURIComponent(myMessage);
+    "?m=" +
+    encodeURIComponent(myName) +
+    "&c=" +
+    encodeURIComponent(crushName) +
+    "&s=" +
+    encodeURIComponent(myMessage);
 
-
-  document.getElementById("shareLink")
+  document
+    .getElementById("shareLink")
     .innerText = link;
 
-  document.getElementById("shareBox")
+  document
+    .getElementById("shareBox")
     .style.display = "block";
 
 }
 
 
-/* Link Copy */
+/* LINK COPY */
+
 function copyLink(){
 
   const link =
-    document.getElementById("shareLink")
-    .innerText;
+    document
+      .getElementById("shareLink")
+      .innerText;
 
-  navigator.clipboard.writeText(link)
+  navigator.clipboard
+    .writeText(link)
     .then(function(){
 
-      alert("Link Copy လုပ်ပြီးပြီ 💗");
+      alert(
+        "Link Copy လုပ်ပြီးပြီ "
+      );
 
     })
     .catch(function(){
 
-      alert("Link ကို ဖိထားပြီး Copy လုပ်ပါ 💗");
+      alert(
+        "Link ကို ဖိထားပြီး Copy လုပ်ပါ "
+      );
 
     });
 
 }
 
 
-/* Link ဖွင့် */
+/* LINK ဖွင့် */
+
 function openLink(){
 
   const link =
-    document.getElementById("shareLink")
-    .innerText;
+    document
+      .getElementById("shareLink")
+      .innerText;
 
   window.location.href = link;
 
 }
 
 
-/* Next */
+/* PAGE နောက်တစ်ခု */
+
 function nextPage(){
 
-  document.getElementById("page" + currentPage)
-    .classList.remove("active");
+  startMusic();
+
+  document
+    .getElementById(
+      "page" + currentPage
+    )
+    .classList
+    .remove("active");
 
   currentPage++;
 
-  document.getElementById("page" + currentPage)
-    .classList.add("active");
+  document
+    .getElementById(
+      "page" + currentPage
+    )
+    .classList
+    .add("active");
 
 }
 
 
-/* Final */
+/* FINAL PAGE */
+
 function showFinal(){
 
-  document.getElementById("page5")
-    .classList.remove("active");
+  startMusic();
 
-  document.getElementById("final")
-    .classList.add("active");
+  document
+    .getElementById("page5")
+    .classList
+    .remove("active");
 
-  document.getElementById("finalTitle")
+  document
+    .getElementById("final")
+    .classList
+    .add("active");
+
+  document
+    .getElementById("finalTitle")
     .innerHTML =
-    crushName + " အတွက်ပါ 🌷";
+    crushName + " အတွက်ပါ ";
 
   window.scrollTo(0,0);
 
 }
 
 
-/* Secret */
+/* SECRET MESSAGE */
+
 function showSecret(){
+
+  startMusic();
 
   const secret =
     document.getElementById("secret");
@@ -433,97 +529,106 @@ function showSecret(){
 
   secret.innerHTML =
     crushName +
-    " ရေ 💕<br><br>" +
+    " ရေ <br><br>" +
+    myMessage.replace(/\n/g,"<br>") +
+    "<br><br>    ";
 
-    myMessage
-      .replace(/\n/g,"<br>") +
-
-    "<br><br>💗 💕 💖 💕 💗";
-
-
-  document.getElementById("secretButton")
+  document
+    .getElementById("secretButton")
     .innerHTML =
-    "💗 စာလေးဖွင့်ပြီးပြီ";
+    " စာလေးဖွင့်ပြီးပြီ";
+
+  document
+    .getElementById("finalHeart")
+    .innerHTML =
+    "";
 
 
-  document.getElementById("finalHeart")
-    .innerHTML = "💖";
+  /* ပျံတဲ့နှလုံးတွေ */
 
-
-  /* Floating Hearts */
-
-  for(let i=0;i<25;i++){
+  for(
+    let i = 0;
+    i < 25;
+    i++
+  ){
 
     const heart =
       document.createElement("div");
 
-    heart.className = "flying";
+    heart.className =
+      "flying";
 
     heart.innerHTML =
-      ["💗","💕","💖","🌸","✨"]
-      [Math.floor(Math.random()*5)];
+      ["","","","",""]
+      [
+        Math.floor(
+          Math.random() * 5
+        )
+      ];
 
     heart.style.left =
-      Math.random()*100 + "vw";
+      Math.random() * 100 + "vw";
 
     heart.style.fontSize =
-      (18 + Math.random()*25) + "px";
+      (18 + Math.random() * 25) +
+      "px";
 
-    document.body.appendChild(heart);
+    document.body.appendChild(
+      heart
+    );
 
     heart.animate(
       [
         {
-          transform:"translateY(0) rotate(0deg)",
+          transform:
+            "translateY(0) rotate(0deg)",
           opacity:1
         },
         {
           transform:
-          "translateY(-110vh) rotate(360deg)",
+            "translateY(-110vh) rotate(360deg)",
           opacity:0
         }
       ],
       {
         duration:
-          2500 + Math.random()*1500,
+          2500 +
+          Math.random() * 1500,
+
         easing:"ease-out"
       }
     );
 
-    setTimeout(function(){
-      heart.remove();
-    },4500);
+    setTimeout(
+      function(){
+        heart.remove();
+      },
+      4500
+    );
 
   }
 
 
-  setTimeout(function(){
+  setTimeout(
+    function(){
 
-    secret.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
+      secret.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
 
-  },100);
+    },
+    100
+  );
 
 }
 
 
-/* Link နဲ့ဝင်လာတာ စစ် */
+/* START */
+
 loadFromLink();
 
 </script>
-<audio id="bgMusic" loop>
-  <source src="Gfatt ထာဝရထက်တရက်-1.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-document.addEventListener("click", function startMusic(){
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.35;
-  music.play().catch(function(){});
-  document.removeEventListener("click", startMusic);
-});
-</script>
 </body>
-</html> 
+</html>
