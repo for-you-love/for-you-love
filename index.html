@@ -504,7 +504,19 @@ button:active{
 <audio id="bgMusic" loop preload="auto">
   <source src="Gfatt%20ထာဝရထက္တရက္-1.mp3" type="audio/mpeg">
 </audio>
-
+<button id="musicBtn" onclick="toggleMusic()" style="
+position:fixed;
+top:15px;
+right:15px;
+width:auto;
+padding:10px 15px;
+margin:0;
+z-index:1000;
+border-radius:50px;
+font-size:14px;
+">
+🎵 သီချင်းဖွင့်မယ်
+</button>
 
 <!-- CREATE PAGE -->
 <div class="card page active" id="create">
@@ -676,6 +688,7 @@ let currentPage = 1;
 
 /* MUSIC */
 
+
 function startMusic(){
 
   const music =
@@ -687,6 +700,38 @@ function startMusic(){
 
 }
 
+
+function toggleMusic(){
+
+  const music =
+    document.getElementById("bgMusic");
+
+  const btn =
+    document.getElementById("musicBtn");
+
+  music.volume = 0.35;
+
+  if(music.paused){
+
+    music.play().then(function(){
+
+      btn.innerHTML = " သီချင်းပိတ်မယ်";
+
+    }).catch(function(){
+
+      alert("သီချင်းဖွင့်လို့မရသေးပါ။ MP3 ဖိုင်နာမည်ကို စစ်ပေးပါ။");
+
+    });
+
+  }else{
+
+    music.pause();
+
+    btn.innerHTML = " သီချင်းဖွင့်မယ်";
+
+  }
+
+}
 
 /* LINK ကနေဝင်လာတာ စစ် */
 
