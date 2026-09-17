@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For You </title>
+<title>For You 💗</title>
 
 <style>
 *{
@@ -15,25 +15,86 @@ body{
   margin:0;
   min-height:100vh;
   font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#ffd6e7,#fff0f6,#ffd1e3);
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 25%),
+    radial-gradient(circle at 80% 80%,rgba(255,170,210,.45),transparent 30%),
+    linear-gradient(135deg,#ffd6e7,#fff0f6,#ffd1e3);
   display:flex;
   justify-content:center;
   align-items:center;
   padding:25px 15px;
   overflow-x:hidden;
   overflow-y:auto;
+  position:relative;
 }
+
+/* Background glow */
+
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:rgba(255,255,255,.35);
+  filter:blur(35px);
+  pointer-events:none;
+  animation:glowMove 6s ease-in-out infinite alternate;
+}
+
+body::before{
+  top:-60px;
+  left:-60px;
+}
+
+body::after{
+  right:-60px;
+  bottom:-60px;
+  animation-delay:2s;
+}
+
+@keyframes glowMove{
+  from{
+    transform:scale(.8);
+    opacity:.4;
+  }
+  to{
+    transform:scale(1.4);
+    opacity:.8;
+  }
+}
+
+
+/* Card */
 
 .card{
   width:100%;
   max-width:430px;
-  background:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.82);
   padding:30px 22px;
   border-radius:28px;
   text-align:center;
-  box-shadow:0 10px 35px rgba(255,80,140,.2);
-  backdrop-filter:blur(10px);
+  box-shadow:
+    0 10px 35px rgba(255,80,140,.2),
+    0 0 35px rgba(255,170,210,.25);
+  backdrop-filter:blur(12px);
+  position:relative;
+  z-index:10;
+  animation:cardFloat 4s ease-in-out infinite;
 }
+
+@keyframes cardFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-4px);
+  }
+}
+
+
+/* Pages */
 
 .page{
   display:none;
@@ -41,18 +102,56 @@ body{
 
 .page.active{
   display:block;
+  animation:pageIn .75s cubic-bezier(.2,.8,.2,1);
 }
+
+@keyframes pageIn{
+  0%{
+    opacity:0;
+    transform:scale(.82) translateY(30px);
+  }
+
+  60%{
+    opacity:1;
+    transform:scale(1.03) translateY(-2px);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+
+/* Titles */
 
 h1{
   color:#e83e7c;
   font-size:25px;
+  line-height:1.5;
+  animation:titleGlow 2.5s ease-in-out infinite;
 }
+
+@keyframes titleGlow{
+  0%,100%{
+    text-shadow:0 0 0 rgba(255,92,147,0);
+  }
+  50%{
+    text-shadow:0 0 15px rgba(255,92,147,.35);
+  }
+}
+
+
+/* Message */
 
 .message{
   color:#555;
   font-size:17px;
   line-height:1.8;
 }
+
+
+/* Inputs */
 
 input,textarea{
   width:100%;
@@ -63,6 +162,17 @@ input,textarea{
   outline:none;
   font-size:16px;
   font-family:Arial,sans-serif;
+  background:rgba(255,255,255,.8);
+  transition:.3s;
+}
+
+input:focus,
+textarea:focus{
+  border-color:#ff5c93;
+  box-shadow:
+    0 0 0 4px rgba(255,92,147,.12),
+    0 0 18px rgba(255,92,147,.18);
+  transform:translateY(-2px);
 }
 
 input{
@@ -74,39 +184,127 @@ textarea{
   resize:vertical;
 }
 
+
+/* Buttons */
+
 button{
   width:100%;
   padding:15px;
   margin-top:15px;
   border:0;
   border-radius:18px;
-  background:#ff5c93;
+  background:linear-gradient(135deg,#ff5c93,#ff7bab);
   color:white;
   font-size:17px;
   font-weight:bold;
+  box-shadow:0 7px 18px rgba(255,92,147,.25);
+  cursor:pointer;
+  transition:.2s;
+  position:relative;
+  overflow:hidden;
 }
+
+button::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:70%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.45),
+    transparent
+  );
+  transform:skewX(-20deg);
+  animation:buttonShine 3s infinite;
+}
+
+@keyframes buttonShine{
+  0%{
+    left:-100%;
+  }
+  35%,100%{
+    left:140%;
+  }
+}
+
+button:active{
+  transform:scale(.94);
+  box-shadow:0 3px 10px rgba(255,92,147,.2);
+}
+
+
+/* Heart */
 
 .heart{
   font-size:55px;
-  animation:beat 1s infinite;
+  animation:
+    beat 1s infinite,
+    heartGlow 2s ease-in-out infinite;
+  min-height:65px;
 }
 
 @keyframes beat{
+  0%,100%{
+    transform:scale(1);
+  }
+
   50%{
     transform:scale(1.15);
   }
 }
+
+@keyframes heartGlow{
+  0%,100%{
+    filter:drop-shadow(0 0 0 rgba(255,70,130,0));
+  }
+  50%{
+    filter:drop-shadow(0 0 12px rgba(255,70,130,.55));
+  }
+}
+
+
+/* Secret */
 
 #secret{
   display:none;
   margin-top:22px;
   padding:20px 15px;
   border-radius:20px;
-  background:#fff1f6;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,241,246,.95),
+      rgba(255,255,255,.9)
+    );
   color:#555;
   font-size:18px;
   line-height:2;
+  box-shadow:
+    0 0 25px rgba(255,92,147,.15);
+  animation:secretIn 1s ease;
 }
+
+@keyframes secretIn{
+  0%{
+    opacity:0;
+    transform:scale(.8) translateY(20px);
+  }
+
+  70%{
+    transform:scale(1.04);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+
+/* Share box */
 
 #shareBox{
   display:none;
@@ -114,6 +312,7 @@ button{
   padding:15px;
   background:#fff1f6;
   border-radius:18px;
+  animation:secretIn .6s ease;
 }
 
 #shareLink{
@@ -123,17 +322,178 @@ button{
   line-height:1.6;
 }
 
+
+/* Small */
+
 .small{
   font-size:14px;
   color:#777;
   line-height:1.7;
 }
 
-.flying{
+
+/* Floating objects */
+
+.flying,
+.star,
+.flower{
   position:fixed;
-  bottom:-40px;
+  bottom:-50px;
   pointer-events:none;
-  z-index:99;
+  z-index:50;
+  user-select:none;
+}
+
+.star{
+  top:-30px;
+  bottom:auto;
+  animation:starFall linear forwards;
+}
+
+@keyframes starFall{
+  0%{
+    transform:translateY(0) rotate(0deg) scale(.5);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(110vh) rotate(360deg) scale(1);
+    opacity:0;
+  }
+}
+
+.flying{
+  animation:heartFloat linear forwards;
+}
+
+@keyframes heartFloat{
+  0%{
+    transform:
+      translateY(0)
+      rotate(0deg)
+      scale(.7);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  100%{
+    transform:
+      translateY(-115vh)
+      rotate(360deg)
+      scale(1.15);
+    opacity:0;
+  }
+}
+
+.flower{
+  animation:flowerFloat linear forwards;
+}
+
+@keyframes flowerFloat{
+  0%{
+    transform:
+      translateY(0)
+      rotate(0deg);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  100%{
+    transform:
+      translateY(-110vh)
+      rotate(540deg);
+    opacity:0;
+  }
+}
+
+
+/* Final reveal */
+
+.finalReveal{
+  animation:
+    finalZoom 1s ease,
+    finalGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes finalZoom{
+  0%{
+    opacity:0;
+    transform:scale(.6);
+  }
+
+  70%{
+    opacity:1;
+    transform:scale(1.08);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+
+@keyframes finalGlow{
+  from{
+    filter:drop-shadow(0 0 0 rgba(255,92,147,0));
+  }
+
+  to{
+    filter:drop-shadow(0 0 18px rgba(255,92,147,.35));
+  }
+}
+
+
+/* Cursor sparkle */
+
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  z-index:999;
+  font-size:16px;
+  animation:sparkleOut .7s ease forwards;
+}
+
+@keyframes sparkleOut{
+  0%{
+    opacity:1;
+    transform:scale(.5);
+  }
+
+  100%{
+    opacity:0;
+    transform:
+      scale(1.5)
+      translateY(-25px);
+  }
+}
+
+
+/* Mobile */
+
+@media(max-width:480px){
+
+  .card{
+    padding:27px 18px;
+    border-radius:25px;
+  }
+
+  h1{
+    font-size:23px;
+  }
+
+  .heart{
+    font-size:50px;
+  }
+
 }
 </style>
 </head>
@@ -149,51 +509,51 @@ button{
 <!-- CREATE PAGE -->
 <div class="card page active" id="create">
 
-  <div class="heart"></div>
+  <div class="heart">💗</div>
 
-  <h1>ကိုယ်ပိုင် Crush Link </h1>
+  <h1>ကိုယ်ပိုင် Crush Link 💕</h1>
 
   <p class="small">
     ကိုယ်ကြိုက်တဲ့စာရေးပြီး Link ဖန်တီးပါ။<br>
-    ပြီးရင် Link ကို သူ့ဆီပို့လို့ရပါတယ် 
+    ပြီးရင် Link ကို သူ့ဆီပို့လို့ရပါတယ် 💌
   </p>
 
   <input
     id="myName"
     type="text"
-    placeholder="မင်းနာမည် "
+    placeholder="မင်းနာမည် 💗"
   >
 
   <input
     id="crushName"
     type="text"
-    placeholder="Crush နာမည် "
+    placeholder="Crush နာမည် 💕"
   >
 
   <textarea
     id="myMessage"
-    placeholder="သီးသန့်စာလေးကို ဒီမှာရေးပါ "
+    placeholder="သီးသန့်စာလေးကို ဒီမှာရေးပါ ✍️"
   ></textarea>
 
   <button onclick="createLink()">
-     Link ဖန်တီးမယ်
+    💌 Link ဖန်တီးမယ်
   </button>
 
   <div id="shareBox">
 
     <p class="small">
-       Link ရပြီ!<br>
+      🎉 Link ရပြီ!<br>
       ဒီ Link ကို Copy လုပ်ပြီး ပို့လိုက်ပါ။
     </p>
 
     <div id="shareLink"></div>
 
     <button onclick="copyLink()">
-       Link Copy လုပ်မယ်
+      📋 Link Copy လုပ်မယ်
     </button>
 
     <button onclick="openLink()">
-       ကိုယ်တိုင်ကြည့်မယ်
+      💗 ကိုယ်တိုင်ကြည့်မယ်
     </button>
 
   </div>
@@ -204,14 +564,14 @@ button{
 <!-- PAGE 1 -->
 <div class="card page" id="page1">
 
-  <div class="heart"></div>
+  <div class="heart">🌷</div>
 
   <h1>
-    ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 
+    ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 
+    ဆက်သွားမယ် 💗
   </button>
 
 </div>
@@ -220,14 +580,14 @@ button{
 <!-- PAGE 2 -->
 <div class="card page" id="page2">
 
-  <div class="heart"></div>
+  <div class="heart">💗</div>
 
   <h1>
-    မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 
+    မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 
+    ဆက်သွားမယ် 💕
   </button>
 
 </div>
@@ -236,14 +596,14 @@ button{
 <!-- PAGE 3 -->
 <div class="card page" id="page3">
 
-  <div class="heart"></div>
+  <div class="heart">💖</div>
 
   <h1>
     မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း ပျော်မိတယ်။
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 
+    ဆက်သွားမယ် 🌷
   </button>
 
 </div>
@@ -255,11 +615,11 @@ button{
   <div class="heart">🙈</div>
 
   <h1>
-    တကယ်တော့ မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈
+    တကယ်တော့… မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈
   </h1>
 
   <button onclick="nextPage()">
-    ဆက်သွားမယ် 
+    ဆက်သွားမယ် 💗
   </button>
 
 </div>
@@ -268,14 +628,14 @@ button{
 <!-- PAGE 5 -->
 <div class="card page" id="page5">
 
-  <div class="heart"></div>
+  <div class="heart">💌</div>
 
   <h1>
-    နောက်ဆုံးတစ်ခုလေးပဲ မင်းအတွက် ရေးထားတာပါ 
+    နောက်ဆုံးတစ်ခုလေးပဲ… မင်းအတွက် ရေးထားတာပါ 💗
   </h1>
 
   <button onclick="showFinal()">
-     ဖွင့်ကြည့်မယ်
+    💌 ဖွင့်ကြည့်မယ်
   </button>
 
 </div>
@@ -285,20 +645,20 @@ button{
 <div class="card page" id="final">
 
   <div class="heart" id="finalHeart">
-    
+    💗
   </div>
 
   <h1 id="finalTitle">
-    မင်းအတွက်ပါ 
+    မင်းအတွက်ပါ 🌷
   </h1>
 
   <p class="message">
     နောက်ဆုံးအနေနဲ့<br>
-    မင်းအတွက် သီးသန့်စာလေးတစ်ခုရှိတယ် 
+    မင်းအတွက် သီးသန့်စာလေးတစ်ခုရှိတယ် 💕
   </p>
 
   <button id="secretButton" onclick="showSecret()">
-     သီးသန့်စာလေးဖွင့်မယ်
+    💌 သီးသန့်စာလေးဖွင့်မယ်
   </button>
 
   <div id="secret"></div>
@@ -318,7 +678,8 @@ let currentPage = 1;
 
 function startMusic(){
 
-  const music = document.getElementById("bgMusic");
+  const music =
+    document.getElementById("bgMusic");
 
   music.volume = 0.35;
 
@@ -331,9 +692,10 @@ function startMusic(){
 
 function loadFromLink(){
 
-  const params = new URLSearchParams(
-    window.location.search
-  );
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
   const m = params.get("m");
   const c = params.get("c");
@@ -360,11 +722,170 @@ function loadFromLink(){
 }
 
 
-/* LINK ဖန်တီး */
+/* Floating hearts */
+
+function createHearts(amount){
+
+  const items =
+    ["💗","💕","💖","❤️","💞"];
+
+  for(
+    let i = 0;
+    i < amount;
+    i++
+  ){
+
+    const heart =
+      document.createElement("div");
+
+    heart.className =
+      "flying";
+
+    heart.innerHTML =
+      items[
+        Math.floor(
+          Math.random() *
+          items.length
+        )
+      ];
+
+    heart.style.left =
+      Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+      (15 + Math.random() * 25) + "px";
+
+    heart.style.animationDuration =
+      (4 + Math.random() * 5) + "s";
+
+    document.body.appendChild(
+      heart
+    );
+
+    setTimeout(
+      function(){
+        heart.remove();
+      },
+      9000
+    );
+
+  }
+
+}
+
+
+/* Stars */
+
+function createStars(amount){
+
+  const items =
+    ["✨","⭐","✦","⋆"];
+
+  for(
+    let i = 0;
+    i < amount;
+    i++
+  ){
+
+    const star =
+      document.createElement("div");
+
+    star.className =
+      "star";
+
+    star.innerHTML =
+      items[
+        Math.floor(
+          Math.random() *
+          items.length
+        )
+      ];
+
+    star.style.left =
+      Math.random() * 100 + "vw";
+
+    star.style.fontSize =
+      (10 + Math.random() * 15) + "px";
+
+    star.style.animationDuration =
+      (5 + Math.random() * 6) + "s";
+
+    document.body.appendChild(
+      star
+    );
+
+    setTimeout(
+      function(){
+        star.remove();
+      },
+      12000
+    );
+
+  }
+
+}
+
+
+/* Flowers */
+
+function createFlowers(amount){
+
+  const items =
+    ["🌸","🌷","🌺","🌼"];
+
+  for(
+    let i = 0;
+    i < amount;
+    i++
+  ){
+
+    const flower =
+      document.createElement("div");
+
+    flower.className =
+      "flower";
+
+    flower.innerHTML =
+      items[
+        Math.floor(
+          Math.random() *
+          items.length
+        )
+      ];
+
+    flower.style.left =
+      Math.random() * 100 + "vw";
+
+    flower.style.fontSize =
+      (14 + Math.random() * 18) + "px";
+
+    flower.style.animationDuration =
+      (5 + Math.random() * 6) + "s";
+
+    document.body.appendChild(
+      flower
+    );
+
+    setTimeout(
+      function(){
+        flower.remove();
+      },
+      12000
+    );
+
+  }
+
+}
+
+
+/* Create link */
 
 function createLink(){
 
   startMusic();
+
+  createHearts(8);
+  createStars(6);
 
   myName =
     document
@@ -391,7 +912,7 @@ function createLink(){
   ){
 
     alert(
-      "နာမည် ၂ ခုနဲ့ သီးသန့်စာလေး အားလုံးထည့်ပေးပါ "
+      "နာမည် ၂ ခုနဲ့ သီးသန့်စာလေး အားလုံးထည့်ပေးပါ 💗"
     );
 
     return;
@@ -422,7 +943,7 @@ function createLink(){
 }
 
 
-/* LINK COPY */
+/* Copy */
 
 function copyLink(){
 
@@ -435,15 +956,17 @@ function copyLink(){
     .writeText(link)
     .then(function(){
 
+      createHearts(12);
+
       alert(
-        "Link Copy လုပ်ပြီးပြီ "
+        "Link Copy လုပ်ပြီးပြီ 💗"
       );
 
     })
     .catch(function(){
 
       alert(
-        "Link ကို ဖိထားပြီး Copy လုပ်ပါ "
+        "Link ကို ဖိထားပြီး Copy လုပ်ပါ 💗"
       );
 
     });
@@ -451,7 +974,7 @@ function copyLink(){
 }
 
 
-/* LINK ဖွင့် */
+/* Open */
 
 function openLink(){
 
@@ -465,149 +988,119 @@ function openLink(){
 }
 
 
-/* PAGE နောက်တစ်ခု */
+/* Next page */
 
 function nextPage(){
 
   startMusic();
 
-  document
-    .getElementById(
+  createHearts(5);
+  createStars(3);
+
+  const oldPage =
+    document.getElementById(
       "page" + currentPage
-    )
-    .classList
-    .remove("active");
+    );
+
+  oldPage.classList.remove(
+    "active"
+  );
 
   currentPage++;
 
-  document
-    .getElementById(
+  const newPage =
+    document.getElementById(
       "page" + currentPage
-    )
-    .classList
-    .add("active");
+    );
+
+  newPage.classList.add(
+    "active"
+  );
 
 }
 
 
-/* FINAL PAGE */
+/* Final */
 
 function showFinal(){
 
   startMusic();
+
+  createHearts(15);
+  createStars(10);
+  createFlowers(8);
 
   document
     .getElementById("page5")
     .classList
     .remove("active");
 
-  document
-    .getElementById("final")
-    .classList
-    .add("active");
+  const finalPage =
+    document.getElementById("final");
+
+  finalPage.classList.add(
+    "active"
+  );
+
+  finalPage.classList.add(
+    "finalReveal"
+  );
 
   document
     .getElementById("finalTitle")
     .innerHTML =
-    crushName + " အတွက်ပါ ";
+    crushName +
+    " အတွက်ပါ 🌷";
 
-  window.scrollTo(0,0);
+  window.scrollTo(
+    0,
+    0
+  );
 
 }
 
 
-/* SECRET MESSAGE */
+/* Secret */
 
 function showSecret(){
 
   startMusic();
 
-  const secret =
-    document.getElementById("secret");
+  createHearts(25);
+  createStars(15);
+  createFlowers(15);
 
-  secret.style.display = "block";
+  const secret =
+    document.getElementById(
+      "secret"
+    );
+
+  secret.style.display =
+    "block";
 
   secret.innerHTML =
     crushName +
-    " ရေ <br><br>" +
-    myMessage.replace(/\n/g,"<br>") +
-    "<br><br>    ";
+    " ရေ 💕<br><br>" +
+    myMessage.replace(
+      /\n/g,
+      "<br>"
+    ) +
+    "<br><br>" +
+    "💗 💕 💖 💕 💗";
 
   document
-    .getElementById("secretButton")
+    .getElementById(
+      "secretButton"
+    )
     .innerHTML =
-    " စာလေးဖွင့်ပြီးပြီ";
+    "💗 စာလေးဖွင့်ပြီးပြီ";
 
   document
-    .getElementById("finalHeart")
+    .getElementById(
+      "finalHeart"
+    )
     .innerHTML =
-    "";
-
-
-  /* ပျံတဲ့နှလုံးတွေ */
-
-  for(
-    let i = 0;
-    i < 25;
-    i++
-  ){
-
-    const heart =
-      document.createElement("div");
-
-    heart.className =
-      "flying";
-
-    heart.innerHTML =
-      ["","","","",""]
-      [
-        Math.floor(
-          Math.random() * 5
-        )
-      ];
-
-    heart.style.left =
-      Math.random() * 100 + "vw";
-
-    heart.style.fontSize =
-      (18 + Math.random() * 25) +
-      "px";
-
-    document.body.appendChild(
-      heart
-    );
-
-    heart.animate(
-      [
-        {
-          transform:
-            "translateY(0) rotate(0deg)",
-          opacity:1
-        },
-        {
-          transform:
-            "translateY(-110vh) rotate(360deg)",
-          opacity:0
-        }
-      ],
-      {
-        duration:
-          2500 +
-          Math.random() * 1500,
-
-        easing:"ease-out"
-      }
-    );
-
-    setTimeout(
-      function(){
-        heart.remove();
-      },
-      4500
-    );
-
-  }
-
+    "💖";
 
   setTimeout(
     function(){
@@ -618,13 +1111,55 @@ function showSecret(){
       });
 
     },
-    100
+    300
   );
 
 }
 
 
-/* START */
+/* Touch sparkle */
+
+document.addEventListener(
+  "click",
+  function(e){
+
+    const sparkle =
+      document.createElement(
+        "div"
+      );
+
+    sparkle.className =
+      "sparkle";
+
+    sparkle.innerHTML =
+      ["✨","💗","💕","✦"][
+        Math.floor(
+          Math.random() * 4
+        )
+      ];
+
+    sparkle.style.left =
+      e.clientX + "px";
+
+    sparkle.style.top =
+      e.clientY + "px";
+
+    document.body.appendChild(
+      sparkle
+    );
+
+    setTimeout(
+      function(){
+        sparkle.remove();
+      },
+      700
+    );
+
+  }
+);
+
+
+/* Start */
 
 loadFromLink();
 
