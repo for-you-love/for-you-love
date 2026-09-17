@@ -6,9 +6,7 @@
 <title>For You 💗</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -26,13 +24,16 @@ body{
 .card{
   width:100%;
   max-width:430px;
-  background:rgba(255,255,255,.75);
+  background:rgba(255,255,255,.8);
   padding:30px 22px;
   border-radius:28px;
   text-align:center;
   box-shadow:0 10px 35px rgba(255,80,140,.2);
   backdrop-filter:blur(10px);
 }
+
+.page{display:none}
+.page.active{display:block}
 
 h1{
   color:#e83e7c;
@@ -45,7 +46,7 @@ h1{
   line-height:1.8;
 }
 
-input{
+input,textarea{
   width:100%;
   padding:15px;
   margin:8px 0;
@@ -53,7 +54,14 @@ input{
   border-radius:15px;
   outline:none;
   font-size:16px;
-  text-align:center;
+  font-family:Arial,sans-serif;
+}
+
+input{text-align:center}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
 }
 
 button{
@@ -66,11 +74,6 @@ button{
   color:white;
   font-size:17px;
   font-weight:bold;
-  cursor:pointer;
-}
-
-button:active{
-  transform:scale(.97);
 }
 
 .heart{
@@ -79,15 +82,7 @@ button:active{
 }
 
 @keyframes beat{
-  50%{transform:scale(1.15);}
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
+  50%{transform:scale(1.15)}
 }
 
 #secret{
@@ -99,6 +94,28 @@ button:active{
   color:#555;
   font-size:18px;
   line-height:2;
+  white-space:normal;
+}
+
+#shareBox{
+  display:none;
+  margin-top:20px;
+  padding:15px;
+  background:#fff1f6;
+  border-radius:18px;
+}
+
+#shareLink{
+  word-break:break-all;
+  font-size:13px;
+  color:#555;
+  line-height:1.6;
+}
+
+.small{
+  font-size:14px;
+  color:#777;
+  line-height:1.7;
 }
 
 .flying{
@@ -112,65 +129,139 @@ button:active{
 
 <body>
 
-<!-- START -->
-<div class="card page active" id="start">
+<!-- CREATE -->
+<div class="card page active" id="create">
+
   <div class="heart">💗</div>
 
-  <h1>မင်းအတွက်ပါ 💕</h1>
+  <h1>ကိုယ်ပိုင် Crush Link 💕</h1>
+
+  <p class="small">
+    ကိုယ်ကြိုက်တဲ့စာရေးပြီး Link ဖန်တီးပါ။<br>
+    ပြီးရင် Link ကို သူ့ဆီပို့လို့ရပါတယ် 💌
+  </p>
 
   <input id="myName" type="text" placeholder="မင်းနာမည် 💗">
 
   <input id="crushName" type="text" placeholder="Crush နာမည် 💕">
 
-  <button onclick="startLove()">💌 စတင်မယ်</button>
+  <textarea id="myMessage"
+    placeholder="သီးသန့်စာလေးကို ဒီမှာရေးပါ ✍️"></textarea>
+
+  <button onclick="createLink()">
+    💌 Link ဖန်တီးမယ်
+  </button>
+
+  <div id="shareBox">
+
+    <p class="small">
+      🎉 Link ရပြီ!<br>
+      ဒီ Link ကို Copy လုပ်ပြီး ပို့လိုက်ပါ။
+    </p>
+
+    <div id="shareLink"></div>
+
+    <button onclick="copyLink()">
+      📋 Link Copy လုပ်မယ်
+    </button>
+
+    <button onclick="openLink()">
+      💗 ကိုယ်တိုင်ကြည့်မယ်
+    </button>
+
+  </div>
+
 </div>
 
 
 <!-- PAGE 1 -->
 <div class="card page" id="page1">
+
   <div class="heart">🌷</div>
-  <h1>ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷</h1>
-  <button onclick="nextPage()">ဆက်သွားမယ် 💗</button>
+
+  <h1>
+    ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷
+  </h1>
+
+  <button onclick="nextPage()">
+    ဆက်သွားမယ် 💗
+  </button>
+
 </div>
 
 
 <!-- PAGE 2 -->
 <div class="card page" id="page2">
+
   <div class="heart">💗</div>
-  <h1>မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭</h1>
-  <button onclick="nextPage()">ဆက်သွားမယ် 💕</button>
+
+  <h1>
+    မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭
+  </h1>
+
+  <button onclick="nextPage()">
+    ဆက်သွားမယ် 💕
+  </button>
+
 </div>
 
 
 <!-- PAGE 3 -->
 <div class="card page" id="page3">
+
   <div class="heart">💖</div>
-  <h1>မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း ပျော်မိတယ်။</h1>
-  <button onclick="nextPage()">ဆက်သွားမယ် 🌷</button>
+
+  <h1>
+    မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း ပျော်မိတယ်။
+  </h1>
+
+  <button onclick="nextPage()">
+    ဆက်သွားမယ် 🌷
+  </button>
+
 </div>
 
 
 <!-- PAGE 4 -->
 <div class="card page" id="page4">
+
   <div class="heart">🙈</div>
-  <h1>တကယ်တော့… မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈</h1>
-  <button onclick="nextPage()">ဆက်သွားမယ် 💗</button>
+
+  <h1>
+    တကယ်တော့… မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈
+  </h1>
+
+  <button onclick="nextPage()">
+    ဆက်သွားမယ် 💗
+  </button>
+
 </div>
 
 
 <!-- PAGE 5 -->
 <div class="card page" id="page5">
+
   <div class="heart">💌</div>
-  <h1>နောက်ဆုံးတစ်ခုလေးပဲ… မင်းအတွက် ရေးထားတာပါ 💗</h1>
-  <button onclick="showFinal()">💌 ဖွင့်ကြည့်မယ်</button>
+
+  <h1>
+    နောက်ဆုံးတစ်ခုလေးပဲ… မင်းအတွက် ရေးထားတာပါ 💗
+  </h1>
+
+  <button onclick="showFinal()">
+    💌 ဖွင့်ကြည့်မယ်
+  </button>
+
 </div>
 
 
 <!-- FINAL -->
 <div class="card page" id="final">
+
   <div class="heart" id="finalHeart">💗</div>
 
-  <h1 id="finalTitle">မင်းအတွက်ပါ 🌷</h1>
+  <h1 id="finalTitle">
+    မင်းအတွက်ပါ 🌷
+  </h1>
 
   <p class="message">
     နောက်ဆုံးအနေနဲ့<br>
@@ -182,6 +273,7 @@ button:active{
   </button>
 
   <div id="secret"></div>
+
 </div>
 
 
@@ -189,30 +281,117 @@ button:active{
 
 let myName = "";
 let crushName = "";
+let myMessage = "";
 
-let currentPage = 0;
+let currentPage = 1;
 
 
-/* START */
-function startLove(){
+/* URL ထဲက data ဖတ်ခြင်း */
+function loadFromLink(){
 
-  myName = document.getElementById("myName").value.trim();
-  crushName = document.getElementById("crushName").value.trim();
+  const params = new URLSearchParams(window.location.search);
 
-  if(myName === "" || crushName === ""){
-    alert("နာမည် ၂ ခုလုံးထည့်ပေးပါနော် 💗");
-    return;
+  const m = params.get("m");
+  const c = params.get("c");
+  const s = params.get("s");
+
+  if(m && c && s){
+
+    myName = m;
+    crushName = c;
+    myMessage = s;
+
+    document.getElementById("create")
+      .classList.remove("active");
+
+    document.getElementById("page1")
+      .classList.add("active");
+
   }
 
-  document.getElementById("start").classList.remove("active");
-
-  currentPage = 1;
-
-  document.getElementById("page1").classList.add("active");
 }
 
 
-/* NEXT */
+/* Link ဖန်တီး */
+function createLink(){
+
+  myName =
+    document.getElementById("myName")
+    .value.trim();
+
+  crushName =
+    document.getElementById("crushName")
+    .value.trim();
+
+  myMessage =
+    document.getElementById("myMessage")
+    .value.trim();
+
+  if(myName === "" ||
+     crushName === "" ||
+     myMessage === ""){
+
+    alert("နာမည် ၂ ခုနဲ့ သီးသန့်စာလေး အားလုံးထည့်ပေးပါ 💗");
+
+    return;
+  }
+
+
+  const base =
+    window.location.origin +
+    window.location.pathname;
+
+  const link =
+    base +
+    "?m=" + encodeURIComponent(myName) +
+    "&c=" + encodeURIComponent(crushName) +
+    "&s=" + encodeURIComponent(myMessage);
+
+
+  document.getElementById("shareLink")
+    .innerText = link;
+
+  document.getElementById("shareBox")
+    .style.display = "block";
+
+}
+
+
+/* Link Copy */
+function copyLink(){
+
+  const link =
+    document.getElementById("shareLink")
+    .innerText;
+
+  navigator.clipboard.writeText(link)
+    .then(function(){
+
+      alert("Link Copy လုပ်ပြီးပြီ 💗");
+
+    })
+    .catch(function(){
+
+      alert("Link ကို ဖိထားပြီး Copy လုပ်ပါ 💗");
+
+    });
+
+}
+
+
+/* Link ဖွင့် */
+function openLink(){
+
+  const link =
+    document.getElementById("shareLink")
+    .innerText;
+
+  window.location.href = link;
+
+}
+
+
+/* Next */
 function nextPage(){
 
   document.getElementById("page" + currentPage)
@@ -222,10 +401,11 @@ function nextPage(){
 
   document.getElementById("page" + currentPage)
     .classList.add("active");
+
 }
 
 
-/* PAGE 5 → FINAL */
+/* Final */
 function showFinal(){
 
   document.getElementById("page5")
@@ -234,39 +414,48 @@ function showFinal(){
   document.getElementById("final")
     .classList.add("active");
 
-  document.getElementById("finalTitle").innerHTML =
+  document.getElementById("finalTitle")
+    .innerHTML =
     crushName + " အတွက်ပါ 🌷";
 
   window.scrollTo(0,0);
+
 }
 
 
-/* SECRET */
+/* Secret */
 function showSecret(){
 
-  let secret = document.getElementById("secret");
+  const secret =
+    document.getElementById("secret");
 
   secret.style.display = "block";
 
   secret.innerHTML =
-    crushName + " ရေ 💕<br><br>" +
-    "ဒီစာမျက်နှာလေးကို " +
-    myName +
-    " က မင်းအတွက် သီးသန့်လုပ်ထားတာပါ။<br><br>" +
-    "မင်းနဲ့ စကားပြောရတာကို သဘောကျတယ်။ 💗<br><br>" +
-    "မင်းပြုံးမိရင် ငါလည်း ပျော်ပြီ 🌷<br><br>" +
-    "💗 💕 💖 💕 💗";
+    crushName +
+    " ရေ 💕<br><br>" +
 
-  document.getElementById("secretButton").innerHTML =
+    myMessage
+      .replace(/\n/g,"<br>") +
+
+    "<br><br>💗 💕 💖 💕 💗";
+
+
+  document.getElementById("secretButton")
+    .innerHTML =
     "💗 စာလေးဖွင့်ပြီးပြီ";
 
-  document.getElementById("finalHeart").innerHTML =
-    "💖";
 
-  /* HEARTS */
-  for(let i=0; i<25; i++){
+  document.getElementById("finalHeart")
+    .innerHTML = "💖";
 
-    let heart = document.createElement("div");
+
+  /* Floating Hearts */
+
+  for(let i=0;i<25;i++){
+
+    const heart =
+      document.createElement("div");
 
     heart.className = "flying";
 
@@ -295,7 +484,8 @@ function showSecret(){
         }
       ],
       {
-        duration:2500 + Math.random()*1500,
+        duration:
+          2500 + Math.random()*1500,
         easing:"ease-out"
       }
     );
@@ -303,16 +493,24 @@ function showSecret(){
     setTimeout(function(){
       heart.remove();
     },4500);
+
   }
 
+
   setTimeout(function(){
+
     secret.scrollIntoView({
       behavior:"smooth",
       block:"center"
     });
+
   },100);
 
 }
+
+
+/* Link နဲ့ဝင်လာတာ စစ် */
+loadFromLink();
 
 </script>
 
