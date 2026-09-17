@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💗</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial,sans-serif;
+overflow:hidden;
+background:linear-gradient(135deg,#ff9fc5,#ffd6e5,#ffb5d0);
+}
+
+.card{
+width:90%;
+max-width:390px;
+padding:32px 23px;
+text-align:center;
+background:rgba(255,255,255,.88);
+backdrop-filter:blur(15px);
+border-radius:30px;
+box-shadow:0 20px 70px rgba(180,40,100,.28);
+z-index:10;
+animation:cardIn .8s ease;
+}
+
+@keyframes cardIn{
+from{opacity:0;transform:translateY(25px) scale(.95)}
+to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.heart{
+font-size:70px;
+animation:beat 1.3s infinite;
+}
+
+@keyframes beat{
+50%{transform:scale(1.18)}
+}
+
+h1{
+color:#d93668;
+font-size:27px;
+margin:15px 0;
+}
+
+.message{
+color:#555;
+font-size:17px;
+line-height:2;
+min-height:120px;
+}
+
+button{
+border:0;
+padding:15px 28px;
+border-radius:50px;
+background:linear-gradient(135deg,#ff4f83,#d93668);
+color:white;
+font-size:16px;
+font-weight:bold;
+box-shadow:0 8px 25px rgba(217,54,104,.3);
+}
+
+button:active{
+transform:scale(.92);
+}
+
+.step{
+margin-top:20px;
+color:#aaa;
+font-size:13px;
+}
+
+#final{
+display:none;
+}
+
+#secret{
+display:none;
+margin-top:25px;
+font-size:18px;
+line-height:2;
+color:#555;
+animation:secretIn 1s ease;
+}
+
+@keyframes secretIn{
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.float{
+position:fixed;
+bottom:-60px;
+font-size:25px;
+animation:up 8s linear infinite;
+opacity:0;
+z-index:2;
+}
+
+.a1{left:10%}
+.a2{left:30%;animation-delay:2s}
+.a3{left:55%;animation-delay:4s}
+.a4{left:80%;animation-delay:1s}
+
+@keyframes up{
+0%{transform:translateY(0) rotate(0deg);opacity:0}
+20%{opacity:1}
+100%{transform:translateY(-115vh) rotate(360deg);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="float a1">💗</div>
+<div class="float a2">💕</div>
+<div class="float a3">💖</div>
+<div class="float a4">🌸</div>
+
+<div class="card" id="card">
+
+<div class="heart" id="heart">💗</div>
+
+<h1 id="title">အဆင့် ၁ 💗</h1>
+
+<div class="message" id="message">
+ဒီစာမျက်နှာလေးက<br>
+မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷
+</div>
+
+<button id="button" onclick="nextStep()">
+💌 ဆက်ကြည့်မယ်
+</button>
+
+<div class="step" id="step">1 / 5</div>
+
+</div>
+
+<div class="card" id="final">
+
+<div id="surpriseHeart" class="heart">💗</div>
+
+<h1>မင်းအတွက်ပါ 🌷</h1>
+
+<p class="message">
+ဒီစာလေးကို ဖတ်ပေးလို့<br>
+ကျေးဇူးတင်ပါတယ် 🥹<br><br>
+
+မင်းပြုံးမိခဲ့ရင်<br>
+ဒီစာမျက်နှာလေးရဲ့ ရည်ရွယ်ချက် ပြည့်ပါပြီ။ 💕
+</p>
+
+<button onclick="showSurprise()">
+💌 သီးသန့်စာလေးဖွင့်မယ်
+</button>
+
+<div id="secret">
+
+မင်းအတွက် ဒီစာမျက်နှာလေးကို<br>
+သီးသန့်လုပ်ထားတာပါ 💕<br><br>
+
+မင်းပြုံးမိရင် ငါလည်း ပျော်ပြီ 🌷<br><br>
+
+💗 💕 💖 💕 💗
+
+</div>
+
+</div>
+
+<script>
+
+let step=1;
+
+function nextStep(){
+
+step++;
+
+if(step===2){
+
+document.getElementById("heart").innerHTML="🌸";
+document.getElementById("title").innerHTML="အဆင့် ၂ 🌸";
+document.getElementById("message").innerHTML=
+"မင်းကို ပြောချင်တဲ့<br>စာလေးတစ်ခုရှိတယ် 🤭";
+
+}
+
+else if(step===3){
+
+document.getElementById("heart").innerHTML="💕";
+document.getElementById("title").innerHTML="အဆင့် ၃ 💕";
+document.getElementById("message").innerHTML=
+"မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း<br>ပျော်မိတယ်။";
+
+}
+
+else if(step===4){
+
+document.getElementById("heart").innerHTML="💖";
+document.getElementById("title").innerHTML="အဆင့် ၄ 💖";
+document.getElementById("message").innerHTML=
+"တကယ်တော့…<br>မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈";
+
+}
+
+else if(step===5){
+
+document.getElementById("heart").innerHTML="🥹";
+document.getElementById("title").innerHTML="အဆင့် ၅ 💗";
+document.getElementById("message").innerHTML=
+"နောက်ဆုံးတစ်ခုလေးပဲ…<br>မင်းအတွက် သီးသန့်ရေးထားတာပါ 💗";
+document.getElementById("button").innerHTML=
+"💌 ဖွင့်ကြည့်မယ်";
+
+}
+
+else{
+
+document.getElementById("card").style.display="none";
+document.getElementById("final").style.display="block";
+
+}
+
+document.getElementById("step").innerHTML=step+" / 5";
+
+}
+
+function showSurprise(){
+
+document.getElementById("secret").style.display="block";
+
+document.getElementById("surpriseHeart").innerHTML="💖💖💖";
+
+for(let i=0;i<25;i++){
+
+let heart=document.createElement("div");
+
+heart.innerHTML=
+["💗","💕","💖","🌸","✨"]
+[Math.floor(Math.random()*5)];
+
+heart.style.position="fixed";
+heart.style.left=Math.random()*100+"%";
+heart.style.bottom="20px";
+heart.style.fontSize=(18+Math.random()*25)+"px";
+heart.style.zIndex="999";
+
+document.body.appendChild(heart);
+
+heart.animate(
+[
+{transform:"translateY(0)",opacity:1},
+{transform:"translateY(-100vh)",opacity:0}
+],
+{
+duration:2500+Math.random()*1500,
+easing:"ease-out"
+}
+);
+
+setTimeout(function(){
+heart.remove();
+},4500);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
