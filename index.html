@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="my">
 <head>
 <meta charset="UTF-8">
@@ -201,8 +201,8 @@ placeholder="Crush နာမည် 💕"
 
 <br>
 
-<button type="button" id="surpriseButton" onclick="showSurprise()">
-💌 သီးသန့်စာလေးဖွင့်မယ်
+<button onclick="startLove()">
+💌 စတင်မယ်
 </button>
 
 </div>
@@ -254,7 +254,10 @@ placeholder="Crush နာမည် 💕"
 ဒီစာမျက်နှာလေးရဲ့ ရည်ရွယ်ချက် ပြည့်ပါပြီ။ 💕
 </p>
 
-<button onclick="showSurprise()">
+<button
+type="button"
+onclick="showSurprise()"
+>
 💌 သီးသန့်စာလေးဖွင့်မယ်
 </button>
 
@@ -266,9 +269,7 @@ placeholder="Crush နာမည် 💕"
 <script>
 
 let step = 1;
-
 let myName = "";
-
 let crushName = "";
 
 
@@ -282,7 +283,6 @@ document.getElementById("myName").value.trim();
 crushName =
 document.getElementById("crushName").value.trim();
 
-
 if(myName === ""){
 myName = "ငါ";
 }
@@ -291,11 +291,11 @@ if(crushName === ""){
 crushName = "မင်း";
 }
 
+document.getElementById("namePage").style.display =
+"none";
 
-document.getElementById("namePage").style.display="none";
-
-document.getElementById("love").style.display="block";
-
+document.getElementById("love").style.display =
+"block";
 
 document.getElementById("message").innerHTML =
 crushName +
@@ -316,13 +316,14 @@ step++;
 
 if(step === 2){
 
-document.getElementById("heart").innerHTML="🌸";
+document.getElementById("heart").innerHTML =
+"🌸";
 
-document.getElementById("title").innerHTML=
+document.getElementById("title").innerHTML =
 "အဆင့် ၂ 🌸";
 
-document.getElementById("message").innerHTML=
-crushName+
+document.getElementById("message").innerHTML =
+crushName +
 " ကို<br>ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭";
 
 }
@@ -330,14 +331,15 @@ crushName+
 
 else if(step === 3){
 
-document.getElementById("heart").innerHTML="💕";
+document.getElementById("heart").innerHTML =
+"💕";
 
-document.getElementById("title").innerHTML=
+document.getElementById("title").innerHTML =
 "အဆင့် ၃ 💕";
 
-document.getElementById("message").innerHTML=
-crushName+
-" နဲ့ စကားပြောရတဲ့အချိန်တိုင်း<br>"+
+document.getElementById("message").innerHTML =
+crushName +
+" နဲ့ စကားပြောရတဲ့အချိန်တိုင်း<br>" +
 "ပျော်မိတယ်။";
 
 }
@@ -345,14 +347,15 @@ crushName+
 
 else if(step === 4){
 
-document.getElementById("heart").innerHTML="💖";
+document.getElementById("heart").innerHTML =
+"💖";
 
-document.getElementById("title").innerHTML=
+document.getElementById("title").innerHTML =
 "အဆင့် ၄ 💖";
 
-document.getElementById("message").innerHTML=
-"တကယ်တော့…<br>"+
-crushName+
+document.getElementById("message").innerHTML =
+"တကယ်တော့…<br>" +
+crushName +
 " ကို သဘောကျနေမိပြီထင်တယ် 🙈";
 
 }
@@ -360,34 +363,37 @@ crushName+
 
 else if(step === 5){
 
-document.getElementById("heart").innerHTML="🥹";
+document.getElementById("heart").innerHTML =
+"🥹";
 
-document.getElementById("title").innerHTML=
+document.getElementById("title").innerHTML =
 "အဆင့် ၅ 💗";
 
-document.getElementById("message").innerHTML=
-"နောက်ဆုံးတစ်ခုလေးပဲ…<br>"+
-crushName+
-" အတွက် "+
-myName+
+document.getElementById("message").innerHTML =
+"နောက်ဆုံးတစ်ခုလေးပဲ…<br>" +
+crushName +
+" အတွက် " +
+myName +
 " ရေးထားတာပါ 💗";
 
-document.getElementById("button").innerHTML=
+document.getElementById("button").innerHTML =
 "💌 ဖွင့်ကြည့်မယ်";
 
 }
 
 
-/* STEP 5 BUTTON */
+/* SHOW FINAL PAGE */
 
 else if(step === 6){
 
-document.getElementById("love").style.display="none";
+document.getElementById("love").style.display =
+"none";
 
-document.getElementById("final").style.display="block";
+document.getElementById("final").style.display =
+"block";
 
-document.getElementById("finalTitle").innerHTML=
-crushName+
+document.getElementById("finalTitle").innerHTML =
+crushName +
 " အတွက်ပါ 🌷";
 
 }
@@ -395,52 +401,60 @@ crushName+
 }
 
 
-/* SECRET MESSAGE + FLYING HEARTS */
+/* FINAL SECRET */
 
 function showSurprise(){
 
-document.getElementById("secret").style.display="block";
+const secret =
+document.getElementById("secret");
 
+secret.style.display =
+"block";
 
-document.getElementById("secret").innerHTML=
-crushName+
-" ရေ 💕<br><br>"+
-"ဒီစာမျက်နှာလေးကို "+
-myName+
-" က မင်းအတွက် သီးသန့်လုပ်ထားတာပါ။<br><br>"+
-"မင်းပြုံးမိရင် ငါလည်း ပျော်ပြီ 🌷<br><br>"+
+secret.innerHTML =
+crushName +
+" ရေ 💕<br><br>" +
+"ဒီစာမျက်နှာလေးကို " +
+myName +
+" က မင်းအတွက် သီးသန့်လုပ်ထားတာပါ။<br><br>" +
+"မင်းပြုံးမိရင် ငါလည်း ပျော်ပြီ 🌷<br><br>" +
 "💗 💕 💖 💕 💗";
 
 
-document.getElementById("surpriseHeart").innerHTML=
+document.getElementById("surpriseHeart").innerHTML =
 "💖💖💖";
 
 
-/* HEART ANIMATION */
+/* FLYING HEARTS */
 
-for(let i=0;i<25;i++){
+for(let i = 0; i < 25; i++){
 
-let heart =
+const heart =
 document.createElement("div");
 
-heart.className="flying";
+heart.className =
+"flying";
 
 heart.innerHTML =
 ["💗","💕","💖","🌸","✨"]
-[Math.floor(Math.random()*5)];
+[Math.floor(Math.random() * 5)];
 
 heart.style.left =
-Math.random()*100+"%";
+Math.random() * 100 + "%";
 
 heart.style.fontSize =
-(18 + Math.random()*25)+"px";
+(18 + Math.random() * 25) + "px";
+
+document.body.appendChild(heart);
 
 
+const animation =
 heart.animate(
 
 [
 {
-transform:"translateY(0) rotate(0deg)",
+transform:
+"translateY(0) rotate(0deg)",
 opacity:1
 },
 
@@ -453,22 +467,21 @@ opacity:0
 
 {
 duration:
-2500 + Math.random()*1500,
+2500 + Math.random() * 1500,
 
-easing:"ease-out"
+easing:
+"ease-out"
 }
 
 );
 
 
-document.body.appendChild(heart);
-
-
-setTimeout(function(){
+animation.onfinish =
+function(){
 
 heart.remove();
 
-},4500);
+};
 
 }
 
@@ -477,4 +490,4 @@ heart.remove();
 </script>
 
 </body>
-</html> 
+</html>
