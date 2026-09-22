@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="my">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You ❤️</title>
+<title>For You </title>
 
 <style>
 *{
@@ -14,7 +14,10 @@ body{
   margin:0;
   min-height:100vh;
   font-family:Arial,"Myanmar Text",sans-serif;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.25),transparent 25%),
+    radial-gradient(circle at 80% 80%,rgba(255,255,255,.2),transparent 25%),
+    linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -22,31 +25,79 @@ body{
   color:#fff;
 }
 
+/* Background glow */
+body::before{
+  content:"";
+  position:fixed;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
+  top:-100px;
+  left:-100px;
+  filter:blur(10px);
+  animation:glow 5s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    transform:scale(1);
+  }
+  to{
+    transform:scale(1.4);
+  }
+}
+
 .card{
   width:90%;
   max-width:420px;
+  max-height:90vh;
+  overflow:auto;
   padding:30px 22px;
   text-align:center;
   border-radius:28px;
   background:rgba(255,255,255,.18);
-  backdrop-filter:blur(15px);
-  box-shadow:0 15px 40px rgba(0,0,0,.18);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.25);
   position:relative;
   z-index:5;
+  animation:cardIn .8s ease;
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:scale(.9) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
 }
 
 .heart{
   font-size:55px;
   animation:beat 1.2s infinite;
+  filter:drop-shadow(0 5px 8px rgba(255,0,80,.2));
 }
 
 @keyframes beat{
-  50%{transform:scale(1.18)}
+  0%,100%{
+    transform:scale(1);
+  }
+  50%{
+    transform:scale(1.18);
+  }
 }
 
 h1{
   font-size:27px;
   margin:12px 0;
+  text-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
 p{
@@ -66,7 +117,12 @@ button{
   color:#ff4f78;
   font-weight:bold;
   box-shadow:0 5px 15px rgba(0,0,0,.15);
-  transition:.2s;
+  transition:.25s;
+}
+
+button:hover{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 8px 20px rgba(0,0,0,.2);
 }
 
 button:active{
@@ -88,25 +144,6 @@ button:active{
   font-weight:bold;
 }
 
-.float{
-  position:fixed;
-  bottom:-30px;
-  font-size:25px;
-  animation:up 6s linear forwards;
-  pointer-events:none;
-}
-
-@keyframes up{
-  0%{
-    transform:translateY(0) rotate(0);
-    opacity:1;
-  }
-  100%{
-    transform:translateY(-110vh) rotate(360deg);
-    opacity:0;
-  }
-}
-
 .choice{
   margin-top:15px;
 }
@@ -114,33 +151,142 @@ button:active{
 #noBtn{
   position:relative;
 }
- /* Final message mobile fix */
-#answer h1 {
-  font-size: 26px;
-  line-height: 1.4;
-  margin: 18px 0 25px;
+
+/* Photo area */
+.photo{
+  width:150px;
+  height:150px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  overflow:hidden;
+  border:5px solid rgba(255,255,255,.7);
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
+  background:rgba(255,255,255,.2);
 }
 
-#answer .final {
-  font-size: 18px;
-  line-height: 1.8;
-  letter-spacing: 0;
-  margin: 0 auto;
-  max-width: 95%;
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-#answer .heart {
-  font-size: 55px;
+/* Floating hearts */
+.float{
+  position:fixed;
+  bottom:-40px;
+  font-size:25px;
+  animation:up 6s linear forwards;
+  pointer-events:none;
+  z-index:2;
+  user-select:none;
 }
 
-@media (max-width: 480px) {
-  #answer h1 {
-    font-size: 24px;
+@keyframes up{
+  0%{
+    transform:translateY(0) rotate(0) scale(.8);
+    opacity:0;
   }
 
-  #answer .final {
-    font-size: 17px;
-    line-height: 1.75;
+  10%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(-110vh) rotate(360deg) scale(1.3);
+    opacity:0;
+  }
+}
+
+/* Sparkles */
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  font-size:14px;
+  animation:sparkleUp 3s linear forwards;
+  z-index:1;
+}
+
+@keyframes sparkleUp{
+  0%{
+    opacity:0;
+    transform:scale(.5);
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:translateY(-150px) scale(1.3);
+  }
+}
+
+/* Final page */
+#answer h1{
+  font-size:26px;
+  line-height:1.4;
+  margin:18px 0 25px;
+  animation:pop .8s ease;
+}
+
+#answer .final{
+  font-size:18px;
+  line-height:1.8;
+  letter-spacing:0;
+  margin:0 auto;
+  max-width:95%;
+}
+
+#answer .heart{
+  font-size:60px;
+}
+
+@keyframes pop{
+  0%{
+    transform:scale(.5);
+    opacity:0;
+  }
+  70%{
+    transform:scale(1.1);
+  }
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+@media(max-width:480px){
+
+  .card{
+    width:92%;
+    padding:25px 17px;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  p{
+    font-size:16px;
+  }
+
+  #answer h1{
+    font-size:24px;
+  }
+
+  #answer .final{
+    font-size:17px;
+    line-height:1.75;
+  }
+
+  #answer .heart{
+    font-size:55px;
+  }
+
+  button{
+    padding:12px 20px;
+    font-size:15px;
   }
 }
 </style>
@@ -150,166 +296,309 @@ button:active{
 
 <div class="card">
 
+  <!-- PAGE 1 -->
   <div id="page1">
-    <div class="heart">❤️</div>
-    <h1>အာ... ဒီကိုရောက်လာပြီလား မင်းလေး 😂❤️</h1>
+
+    <div class="heart"></div>
+
+    <h1>အာ... ဒီကိုရောက်လာပြီလား မင်းလေး 😂</h1>
+
     <p>
       မင်းကို ပြောစရာလေးတစ်ခုရှိတယ်...<br>
       ဒါပေမယ့် အရင်ဆုံး<br>
       စိတ်မဆိုးဘူးလို့ ကတိပေး 😭😂
     </p>
-    <button onclick="next(2)">ဘာပြောမလို့လဲ? 👀</button>
+
+    <button onclick="next(2)">
+      ဘာပြောမလို့လဲ? 
+    </button>
+
   </div>
 
+
+  <!-- PAGE 2 -->
   <div id="page2" class="hidden">
-    <div class="heart">🌷</div>
+
+    <div class="heart"></div>
+
     <h1>တကယ်တော့...</h1>
+
     <p>
       မင်းနဲ့ စကားပြောရင်းနဲ့<br>
       တဖြည်းဖြည်း မင်းကို သဘောကျလာမိတယ်။<br><br>
-      အစကတော့ “သာမန်ပါပဲ” လို့ ကိုယ့်ကိုယ်ကို ပြောခဲ့တာ...
-      <br>
+
+      အစကတော့ သာမန်ပါပဲလို့<br>
+      ကိုယ့်ကိုယ်ကို ပြောခဲ့တာ...<br><br>
+
       နောက်တော့ နှလုံးသားက<br>
-      “မင်းမေးတာ မနားထောင်ဘူး” ဆိုပြီး ထွက်ပြေးသွားတယ် 😂❤️
+      မင်းမေးတာ မနားထောင်ဘူးဆိုပြီး<br>
+      ထွက်ပြေးသွားတယ် 😂
     </p>
-    <button onclick="next(3)">ဆက်ဖတ်မယ် 🥺</button>
+
+    <button onclick="next(3)">
+      ဆက်ဖတ်မယ် 
+    </button>
+
   </div>
 
+
+  <!-- PAGE 3 -->
   <div id="page3" class="hidden">
-    <div class="heart">💕</div>
+
+    <div class="heart"></div>
+
     <h1>ပိုဆိုးလာတာက...</h1>
+
     <p>
       မင်း Online တက်လာရင်<br>
-      မသိမသာ ပြုံးမိတယ်။ 😂<br><br>
+      မသိမသာ ပြုံးမိတယ် 😂<br><br>
 
       မင်း Message လာရင်<br>
       ဖုန်း Notification တောင်<br>
-      ငါ့အတွက် အရေးကြီးသလို ဖြစ်နေပြီ။ ❤️
+      ငါ့အတွက် အရေးကြီးသလို ဖြစ်နေပြီ။ 
     </p>
-    <button onclick="next(4)">အဲ့ဒါနဲ့? 😳</button>
+
+    <button onclick="next(4)">
+      အဲ့ဒါနဲ့? 😳
+    </button>
+
   </div>
 
+
+  <!-- PAGE 4 -->
   <div id="page4" class="hidden">
-    <div class="heart">🥺❤️</div>
+
+    <div class="heart"></div>
+
     <h1>အဲ့ဒါနဲ့...</h1>
+
     <p>
       ဒီနေ့တော့ ရင်ထဲကအတိုင်း ပြောတော့မယ်။<br><br>
 
       မင်းကို ငါ...<br>
-      <b>တကယ် သဘောကျတယ်။ ❤️</b><br><br>
+      <b>တကယ် သဘောကျတယ်။ </b><br><br>
 
       ဒီစာရေးပြီးတာနဲ့<br>
       ရင်တွေတောင် ခုန်နေပြီ 😭😂
     </p>
-    <button onclick="next(5)">နောက်ဆုံးတစ်ခုရှိသေးတယ် 💌</button>
+
+    <button onclick="next(5)">
+      နောက်ဆုံးတစ်ခုရှိသေးတယ် 
+    </button>
+
   </div>
 
+
+  <!-- PAGE 5 -->
   <div id="page5" class="hidden">
-    <div class="heart">💗</div>
-    <h1>ဒါလေးတော့... 🥺</h1>
+
+    <div class="heart"></div>
+
+    <h1>ဒါလေးတော့...</h1>
 
     <p class="final">
-      မငြင်းလိုက်ပါနဲ့နော်... ❤️<br><br>
+
+      မငြင်းလိုက်ပါနဲ့နော်... <br><br>
 
       ငါ့နှလုံးသားက မင်းဆီကို<br>
       ရောက်ပြီးသွားပြီ။ 😂<br><br>
 
       ပြန်ယူဖို့လည်း မဖြစ်တော့ဘူး...<br>
-      Return Policy မရှိဘူးတဲ့ 😭😂❤️
+      Return Policy မရှိဘူးတဲ့ 😭😂
+
     </p>
 
     <div class="choice">
-      <button onclick="yes()">❤️ အင်း... </button>
-      <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">
-        မစဉ်းစားရသေးဘူး 😳
+
+      <button onclick="yes()">
+        အင်း... 
       </button>
+
+      <button
+        id="noBtn"
+        onmouseover="moveNo()"
+        onclick="moveNo()">
+
+        မစဉ်းစားရသေးဘူး 😳
+
+      </button>
+
     </div>
 
     <p class="small">
-      အဖြေကို အလျင်မလိုပါဘူးနော် 🌷
+      အဖြေကို အလျင်မလိုပါဘူးနော် 
     </p>
+
   </div>
 
+
+  <!-- FINAL ANSWER -->
   <div id="answer" class="hidden">
-    <div class="heart">🥰❤️</div>
-    <h1>ဟာ... တကယ်အင်းတာလား?! 😭</h1>
 
-<p class="final">
-  ဒါဆို ငါတို့နှစ်ယောက်ရဲ့ဇာတ်လမ်းလေး<br>
-  ဒီနေ့ကစပြီပေါ့နော်... <br><br>
+    <div class="heart"></div>
 
-  ဝမ်းသာလွန်းလို့<br>
-  ငါ့နှလုံးသားကတောင် အောင်ပြီဟေ့ လို့<br>
-  ခုန်နေပြီ 😂<br><br>
+    <h1>
+      ဟာ... တကယ်အင်းတာလား?! 😭
+    </h1>
 
-  ဒီနေ့ကစပြီး<br>
-  မင်းရဲ့အပြုံးလေးတွေကို ပိုတန်ဖိုးထားချင်တယ်။ <br><br>
+    <p class="final">
 
-  မင်းကို သဘောကျမိတာက<br>
-  ဒီနေ့မှစတာမဟုတ်ဘူးနော်...<br>
-  ငါ့နှလုံးသားက အရင်ကတည်းက<br>
-  မင်းဘက်ကို ရွေးထားပြီးသားပါ။ 
-</p>
+      ဒါဆို ငါတို့နှစ်ယောက်ရဲ့ဇာတ်လမ်းလေး<br>
+      ဒီနေ့ကစပြီပေါ့နော်... <br><br>
+
+      ဝမ်းသာလွန်းလို့<br>
+      ငါ့နှလုံးသားကတောင်<br>
+      အောင်ပြီဟေ့ လို့<br>
+      ခုန်နေပြီ 😂<br><br>
+
+      ဒီနေ့ကစပြီး<br>
+      မင်းရဲ့အပြုံးလေးတွေကို<br>
+      ပိုတန်ဖိုးထားချင်တယ်။ <br><br>
+
+      မင်းကို သဘောကျမိတာက<br>
+      ဒီနေ့မှစတာမဟုတ်ဘူးနော်...<br>
+
+      ငါ့နှလုံးသားက အရင်ကတည်းက<br>
+      မင်းဘက်ကို ရွေးထားပြီးသားပါ။ 
+
+    </p>
+
   </div>
 
 </div>
 
+
 <script>
 
+/* Page change */
 function next(number){
 
   for(let i=1;i<=5;i++){
-    document.getElementById("page"+i).classList.add("hidden");
+    document
+      .getElementById("page"+i)
+      .classList.add("hidden");
   }
 
-  document.getElementById("page"+number).classList.remove("hidden");
+  document
+    .getElementById("page"+number)
+    .classList.remove("hidden");
 
   hearts();
+  sparkles();
 }
 
+
+/* YES button */
 function yes(){
 
-  document.getElementById("page5").classList.add("hidden");
-  document.getElementById("answer").classList.remove("hidden");
+  document
+    .getElementById("page5")
+    .classList.add("hidden");
 
-  for(let i=0;i<20;i++){
-    setTimeout(hearts,i*100);
+  document
+    .getElementById("answer")
+    .classList.remove("hidden");
+
+  /* Big celebration */
+  for(let i=0;i<35;i++){
+
+    setTimeout(()=>{
+      hearts();
+      sparkles();
+    },i*100);
+
   }
 }
 
+
+/* No button moves */
 function moveNo(){
 
   const btn=document.getElementById("noBtn");
 
-  const x=Math.random()*140-70;
-  const y=Math.random()*100-50;
+  const x=Math.random()*180-90;
+  const y=Math.random()*120-60;
 
   btn.style.transform=
     "translate("+x+"px,"+y+"px)";
+
 }
 
+
+/* Floating hearts */
 function hearts(){
 
   const h=document.createElement("div");
 
   h.className="float";
 
-  const emojis=["❤️","💕","💗","💖","🌷","🥰","✨"];
+  const emojis=[
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ];
 
-  h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+  h.innerHTML=
+    emojis[Math.floor(Math.random()*emojis.length)];
 
-  h.style.left=Math.random()*100+"vw";
+  h.style.left=
+    Math.random()*100+"vw";
 
-  h.style.animationDuration=(4+Math.random()*4)+"s";
+  h.style.fontSize=
+    (18+Math.random()*20)+"px";
+
+  h.style.animationDuration=
+    (4+Math.random()*4)+"s";
 
   document.body.appendChild(h);
 
   setTimeout(()=>{
     h.remove();
   },8000);
+
 }
 
+
+/* Sparkles */
+function sparkles(){
+
+  const s=document.createElement("div");
+
+  s.className="sparkle";
+
+  const emojis=[
+    "",
+    "",
+    "",
+    ""
+  ];
+
+  s.innerHTML=
+    emojis[Math.floor(Math.random()*emojis.length)];
+
+  s.style.left=
+    Math.random()*100+"vw";
+
+  s.style.top=
+    (40+Math.random()*50)+"vh";
+
+  document.body.appendChild(s);
+
+  setTimeout(()=>{
+    s.remove();
+  },3000);
+
+}
+
+
+/* Background animation */
 setInterval(hearts,900);
+setInterval(sparkles,1200);
 
 </script>
 
