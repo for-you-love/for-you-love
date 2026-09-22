@@ -25,7 +25,6 @@ body{
   color:#fff;
 }
 
-/* Background glow */
 body::before{
   content:"";
   position:fixed;
@@ -40,12 +39,8 @@ body::before{
 }
 
 @keyframes glow{
-  from{
-    transform:scale(1);
-  }
-  to{
-    transform:scale(1.4);
-  }
+  from{transform:scale(1);}
+  to{transform:scale(1.4);}
 }
 
 .card{
@@ -86,12 +81,8 @@ body::before{
 }
 
 @keyframes beat{
-  0%,100%{
-    transform:scale(1);
-  }
-  50%{
-    transform:scale(1.18);
-  }
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.18);}
 }
 
 h1{
@@ -152,25 +143,6 @@ button:active{
   position:relative;
 }
 
-/* Photo area */
-.photo{
-  width:150px;
-  height:150px;
-  margin:0 auto 15px;
-  border-radius:50%;
-  overflow:hidden;
-  border:5px solid rgba(255,255,255,.7);
-  box-shadow:0 8px 25px rgba(0,0,0,.2);
-  background:rgba(255,255,255,.2);
-}
-
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* Floating hearts */
 .float{
   position:fixed;
   bottom:-40px;
@@ -197,7 +169,6 @@ button:active{
   }
 }
 
-/* Sparkles */
 .sparkle{
   position:fixed;
   pointer-events:none;
@@ -220,6 +191,18 @@ button:active{
     opacity:0;
     transform:translateY(-150px) scale(1.3);
   }
+}
+
+/* Music button */
+#musicBtn{
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  z-index:20;
+  font-size:14px;
+  padding:10px 16px;
+  margin:0;
+  background:rgba(255,255,255,.95);
 }
 
 /* Final page */
@@ -247,9 +230,11 @@ button:active{
     transform:scale(.5);
     opacity:0;
   }
+
   70%{
     transform:scale(1.1);
   }
+
   100%{
     transform:scale(1);
     opacity:1;
@@ -294,6 +279,16 @@ button:active{
 
 <body>
 
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="myo gyi2 (3).mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()">
+   သီချင်းဖွင့်မယ်
+</button>
+
+
 <div class="card">
 
   <!-- PAGE 1 -->
@@ -301,7 +296,9 @@ button:active{
 
     <div class="heart"></div>
 
-    <h1>အာ... ဒီကိုရောက်လာပြီလား မင်းလေး 😂</h1>
+    <h1>
+      အာ... ဒီကိုရောက်လာပြီလား မင်းလေး 😂
+    </h1>
 
     <p>
       မင်းကို ပြောစရာလေးတစ်ခုရှိတယ်...<br>
@@ -456,7 +453,7 @@ button:active{
       ပိုတန်ဖိုးထားချင်တယ်။ <br><br>
 
       မင်းကို သဘောကျမိတာက<br>
-      ဒီနေ့မှစတာမဟုတ်ဘူးနော်...<br>
+      ဒီနေ့မှစတာမဟုတ်ဘူးနော်...<br><br>
 
       ငါ့နှလုံးသားက အရင်ကတည်းက<br>
       မင်းဘက်ကို ရွေးထားပြီးသားပါ။ 
@@ -470,13 +467,62 @@ button:active{
 
 <script>
 
-/* Page change */
+/* MUSIC */
+
+function startMusic(){
+
+  const music=document.getElementById("bgMusic");
+  const btn=document.getElementById("musicBtn");
+
+  music.volume=0.35;
+
+  music.play().then(()=>{
+
+    btn.innerHTML=" သီချင်းပိတ်မယ်";
+
+  }).catch(()=>{
+
+    console.log("Music needs user interaction");
+
+  });
+
+}
+
+
+function toggleMusic(){
+
+  const music=document.getElementById("bgMusic");
+  const btn=document.getElementById("musicBtn");
+
+  if(music.paused){
+
+    music.play();
+
+    btn.innerHTML=" သီချင်းပိတ်မယ်";
+
+  }else{
+
+    music.pause();
+
+    btn.innerHTML=" သီချင်းဖွင့်မယ်";
+
+  }
+
+}
+
+
+/* PAGE CHANGE */
+
 function next(number){
 
+  startMusic();
+
   for(let i=1;i<=5;i++){
+
     document
       .getElementById("page"+i)
       .classList.add("hidden");
+
   }
 
   document
@@ -485,10 +531,12 @@ function next(number){
 
   hearts();
   sparkles();
+
 }
 
 
-/* YES button */
+/* YES BUTTON */
+
 function yes(){
 
   document
@@ -499,19 +547,22 @@ function yes(){
     .getElementById("answer")
     .classList.remove("hidden");
 
-  /* Big celebration */
   for(let i=0;i<35;i++){
 
     setTimeout(()=>{
+
       hearts();
       sparkles();
+
     },i*100);
 
   }
+
 }
 
 
-/* No button moves */
+/* NO BUTTON */
+
 function moveNo(){
 
   const btn=document.getElementById("noBtn");
@@ -525,7 +576,8 @@ function moveNo(){
 }
 
 
-/* Floating hearts */
+/* HEARTS */
+
 function hearts(){
 
   const h=document.createElement("div");
@@ -558,13 +610,16 @@ function hearts(){
   document.body.appendChild(h);
 
   setTimeout(()=>{
+
     h.remove();
+
   },8000);
 
 }
 
 
-/* Sparkles */
+/* SPARKLES */
+
 function sparkles(){
 
   const s=document.createElement("div");
@@ -590,14 +645,18 @@ function sparkles(){
   document.body.appendChild(s);
 
   setTimeout(()=>{
+
     s.remove();
+
   },3000);
 
 }
 
 
-/* Background animation */
+/* BACKGROUND ANIMATION */
+
 setInterval(hearts,900);
+
 setInterval(sparkles,1200);
 
 </script>
