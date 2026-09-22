@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>For You 💗</title>
+<title>For You ❤️</title>
 
 <style>
 *{
@@ -14,1199 +13,265 @@
 body{
   margin:0;
   min-height:100vh;
-  font-family:Arial,sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 25%),
-    radial-gradient(circle at 80% 80%,rgba(255,170,210,.45),transparent 30%),
-    linear-gradient(135deg,#ffd6e7,#fff0f6,#ffd1e3);
+  font-family:Arial,"Myanmar Text",sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:25px 15px;
-  overflow-x:hidden;
-  overflow-y:auto;
-  position:relative;
+  overflow:hidden;
+  color:#fff;
 }
-
-/* Background glow */
-
-body::before,
-body::after{
-  content:"";
-  position:fixed;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  background:rgba(255,255,255,.35);
-  filter:blur(35px);
-  pointer-events:none;
-  animation:glowMove 6s ease-in-out infinite alternate;
-}
-
-body::before{
-  top:-60px;
-  left:-60px;
-}
-
-body::after{
-  right:-60px;
-  bottom:-60px;
-  animation-delay:2s;
-}
-
-@keyframes glowMove{
-  from{
-    transform:scale(.8);
-    opacity:.4;
-  }
-  to{
-    transform:scale(1.4);
-    opacity:.8;
-  }
-}
-
-
-/* Card */
 
 .card{
-  width:100%;
-  max-width:430px;
-  background:rgba(255,255,255,.82);
+  width:90%;
+  max-width:420px;
   padding:30px 22px;
+  text-align:center;
   border-radius:28px;
-  text-align:center;
-  box-shadow:
-    0 10px 35px rgba(255,80,140,.2),
-    0 0 35px rgba(255,170,210,.25);
-  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(15px);
+  box-shadow:0 15px 40px rgba(0,0,0,.18);
   position:relative;
-  z-index:10;
-  animation:cardFloat 4s ease-in-out infinite;
+  z-index:5;
 }
-
-@keyframes cardFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-4px);
-  }
-}
-
-
-/* Pages */
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-  animation:pageIn .75s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes pageIn{
-  0%{
-    opacity:0;
-    transform:scale(.82) translateY(30px);
-  }
-
-  60%{
-    opacity:1;
-    transform:scale(1.03) translateY(-2px);
-  }
-
-  100%{
-    opacity:1;
-    transform:scale(1) translateY(0);
-  }
-}
-
-
-/* Titles */
-
-h1{
-  color:#e83e7c;
-  font-size:25px;
-  line-height:1.5;
-  animation:titleGlow 2.5s ease-in-out infinite;
-}
-
-@keyframes titleGlow{
-  0%,100%{
-    text-shadow:0 0 0 rgba(255,92,147,0);
-  }
-  50%{
-    text-shadow:0 0 15px rgba(255,92,147,.35);
-  }
-}
-
-
-/* Message */
-
-.message{
-  color:#555;
-  font-size:17px;
-  line-height:1.8;
-}
-
-
-/* Inputs */
-
-input,textarea{
-  width:100%;
-  padding:15px;
-  margin:8px 0;
-  border:1px solid #ffc0d7;
-  border-radius:15px;
-  outline:none;
-  font-size:16px;
-  font-family:Arial,sans-serif;
-  background:rgba(255,255,255,.8);
-  transition:.3s;
-}
-
-input:focus,
-textarea:focus{
-  border-color:#ff5c93;
-  box-shadow:
-    0 0 0 4px rgba(255,92,147,.12),
-    0 0 18px rgba(255,92,147,.18);
-  transform:translateY(-2px);
-}
-
-input{
-  text-align:center;
-}
-
-textarea{
-  min-height:130px;
-  resize:vertical;
-}
-
-
-/* Buttons */
-
-button{
-  width:100%;
-  padding:15px;
-  margin-top:15px;
-  border:0;
-  border-radius:18px;
-  background:linear-gradient(135deg,#ff5c93,#ff7bab);
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-  box-shadow:0 7px 18px rgba(255,92,147,.25);
-  cursor:pointer;
-  transition:.2s;
-  position:relative;
-  overflow:hidden;
-}
-
-button::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:70%;
-  height:100%;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.45),
-    transparent
-  );
-  transform:skewX(-20deg);
-  animation:buttonShine 3s infinite;
-}
-
-@keyframes buttonShine{
-  0%{
-    left:-100%;
-  }
-  35%,100%{
-    left:140%;
-  }
-}
-
-button:active{
-  transform:scale(.94);
-  box-shadow:0 3px 10px rgba(255,92,147,.2);
-}
-
-
-/* Heart */
 
 .heart{
   font-size:55px;
-  animation:
-    beat 1s infinite,
-    heartGlow 2s ease-in-out infinite;
-  min-height:65px;
+  animation:beat 1.2s infinite;
 }
 
 @keyframes beat{
-  0%,100%{
-    transform:scale(1);
-  }
-
-  50%{
-    transform:scale(1.15);
-  }
+  50%{transform:scale(1.18)}
 }
 
-@keyframes heartGlow{
-  0%,100%{
-    filter:drop-shadow(0 0 0 rgba(255,70,130,0));
-  }
-  50%{
-    filter:drop-shadow(0 0 12px rgba(255,70,130,.55));
-  }
+h1{
+  font-size:27px;
+  margin:12px 0;
 }
 
+p{
+  font-size:17px;
+  line-height:1.9;
+  min-height:120px;
+}
 
-/* Secret */
+button{
+  border:0;
+  border-radius:30px;
+  padding:13px 24px;
+  margin:7px;
+  font-size:16px;
+  cursor:pointer;
+  background:white;
+  color:#ff4f78;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,.15);
+  transition:.2s;
+}
 
-#secret{
+button:active{
+  transform:scale(.92);
+}
+
+.hidden{
   display:none;
-  margin-top:22px;
-  padding:20px 15px;
-  border-radius:20px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,241,246,.95),
-      rgba(255,255,255,.9)
-    );
-  color:#555;
-  font-size:18px;
-  line-height:2;
-  box-shadow:
-    0 0 25px rgba(255,92,147,.15);
-  animation:secretIn 1s ease;
 }
-
-@keyframes secretIn{
-  0%{
-    opacity:0;
-    transform:scale(.8) translateY(20px);
-  }
-
-  70%{
-    transform:scale(1.04);
-  }
-
-  100%{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-
-/* Share box */
-
-#shareBox{
-  display:none;
-  margin-top:20px;
-  padding:15px;
-  background:#fff1f6;
-  border-radius:18px;
-  animation:secretIn .6s ease;
-}
-
-#shareLink{
-  word-break:break-all;
-  font-size:13px;
-  color:#555;
-  line-height:1.6;
-}
-
-
-/* Small */
 
 .small{
   font-size:14px;
-  color:#777;
-  line-height:1.7;
+  opacity:.9;
 }
 
+.final{
+  font-size:20px;
+  line-height:2;
+  font-weight:bold;
+}
 
-/* Floating objects */
-
-.flying,
-.star,
-.flower{
+.float{
   position:fixed;
-  bottom:-50px;
+  bottom:-30px;
+  font-size:25px;
+  animation:up 6s linear forwards;
   pointer-events:none;
-  z-index:50;
-  user-select:none;
 }
 
-.star{
-  top:-30px;
-  bottom:auto;
-  animation:starFall linear forwards;
-}
-
-@keyframes starFall{
+@keyframes up{
   0%{
-    transform:translateY(0) rotate(0deg) scale(.5);
-    opacity:0;
-  }
-
-  15%{
+    transform:translateY(0) rotate(0);
     opacity:1;
   }
-
   100%{
-    transform:translateY(110vh) rotate(360deg) scale(1);
+    transform:translateY(-110vh) rotate(360deg);
     opacity:0;
   }
 }
 
-.flying{
-  animation:heartFloat linear forwards;
+.choice{
+  margin-top:15px;
 }
 
-@keyframes heartFloat{
-  0%{
-    transform:
-      translateY(0)
-      rotate(0deg)
-      scale(.7);
-    opacity:0;
-  }
-
-  15%{
-    opacity:1;
-  }
-
-  100%{
-    transform:
-      translateY(-115vh)
-      rotate(360deg)
-      scale(1.15);
-    opacity:0;
-  }
-}
-
-.flower{
-  animation:flowerFloat linear forwards;
-}
-
-@keyframes flowerFloat{
-  0%{
-    transform:
-      translateY(0)
-      rotate(0deg);
-    opacity:0;
-  }
-
-  15%{
-    opacity:1;
-  }
-
-  100%{
-    transform:
-      translateY(-110vh)
-      rotate(540deg);
-    opacity:0;
-  }
-}
-
-
-/* Final reveal */
-
-.finalReveal{
-  animation:
-    finalZoom 1s ease,
-    finalGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes finalZoom{
-  0%{
-    opacity:0;
-    transform:scale(.6);
-  }
-
-  70%{
-    opacity:1;
-    transform:scale(1.08);
-  }
-
-  100%{
-    transform:scale(1);
-  }
-}
-
-@keyframes finalGlow{
-  from{
-    filter:drop-shadow(0 0 0 rgba(255,92,147,0));
-  }
-
-  to{
-    filter:drop-shadow(0 0 18px rgba(255,92,147,.35));
-  }
-}
-
-
-/* Cursor sparkle */
-
-.sparkle{
-  position:fixed;
-  pointer-events:none;
-  z-index:999;
-  font-size:16px;
-  animation:sparkleOut .7s ease forwards;
-}
-
-@keyframes sparkleOut{
-  0%{
-    opacity:1;
-    transform:scale(.5);
-  }
-
-  100%{
-    opacity:0;
-    transform:
-      scale(1.5)
-      translateY(-25px);
-  }
-}
-
-
-/* Mobile */
-
-@media(max-width:480px){
-
-  .card{
-    padding:27px 18px;
-    border-radius:25px;
-  }
-
-  h1{
-    font-size:23px;
-  }
-
-  .heart{
-    font-size:50px;
-  }
-
+#noBtn{
+  position:relative;
 }
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="mYO%20gI%20%282%29.mp3" type="audio/mpeg">
-</audio>
-<button id="musicBtn" onclick="toggleMusic()" style="
-position:fixed;
-top:15px;
-right:15px;
-width:auto;
-padding:10px 15px;
-margin:0;
-z-index:1000;
-border-radius:50px;
-font-size:14px;
-">
-🎵 သီချင်းဖွင့်မယ်
-</button>
+<div class="card">
 
-<!-- CREATE PAGE -->
-<div class="card page active" id="create">
+  <div id="page1">
+    <div class="heart">❤️</div>
+    <h1>ဟေး... မင်းရေ 🫣</h1>
+    <p>
+      မင်းကို ပြောစရာလေးတစ်ခုရှိတယ်...<br>
+      ဒါပေမယ့် အရင်ဆုံး<br>
+      စိတ်မဆိုးဘူးလို့ ကတိပေး 😭😂
+    </p>
+    <button onclick="next(2)">ဘာပြောမလို့လဲ? 👀</button>
+  </div>
 
-  <div class="heart">💗</div>
+  <div id="page2" class="hidden">
+    <div class="heart">🌷</div>
+    <h1>တကယ်တော့...</h1>
+    <p>
+      မင်းနဲ့ စကားပြောရင်းနဲ့<br>
+      တဖြည်းဖြည်း မင်းကို သဘောကျလာမိတယ်။<br><br>
+      အစကတော့ “သာမန်ပါပဲ” လို့ ကိုယ့်ကိုယ်ကို ပြောခဲ့တာ...
+      <br>
+      နောက်တော့ နှလုံးသားက<br>
+      “မင်းမေးတာ မနားထောင်ဘူး” ဆိုပြီး ထွက်ပြေးသွားတယ် 😂❤️
+    </p>
+    <button onclick="next(3)">ဆက်ဖတ်မယ် 🥺</button>
+  </div>
 
-  <h1>ကိုယ်ပိုင် Crush Link 💕</h1>
+  <div id="page3" class="hidden">
+    <div class="heart">💕</div>
+    <h1>ပိုဆိုးလာတာက...</h1>
+    <p>
+      မင်း Online တက်လာရင်<br>
+      မသိမသာ ပြုံးမိတယ်။ 😂<br><br>
 
-  <p class="small">
-    ကိုယ်ကြိုက်တဲ့စာရေးပြီး Link ဖန်တီးပါ။<br>
-    ပြီးရင် Link ကို သူ့ဆီပို့လို့ရပါတယ် 💌
-  </p>
+      မင်း Message လာရင်<br>
+      ဖုန်း Notification တောင်<br>
+      ငါ့အတွက် အရေးကြီးသလို ဖြစ်နေပြီ။ ❤️
+    </p>
+    <button onclick="next(4)">အဲ့ဒါနဲ့? 😳</button>
+  </div>
 
-  <input
-    id="myName"
-    type="text"
-    placeholder="မင်းနာမည် 💗"
-  >
+  <div id="page4" class="hidden">
+    <div class="heart">🥺❤️</div>
+    <h1>အဲ့ဒါနဲ့...</h1>
+    <p>
+      ဒီနေ့တော့ ရင်ထဲကအတိုင်း ပြောတော့မယ်။<br><br>
 
-  <input
-    id="crushName"
-    type="text"
-    placeholder="Crush နာမည် 💕"
-  >
+      မင်းကို ငါ...<br>
+      <b>တကယ် သဘောကျတယ်။ ❤️</b><br><br>
 
-  <textarea
-    id="myMessage"
-    placeholder="သီးသန့်စာလေးကို ဒီမှာရေးပါ ✍️"
-  ></textarea>
+      ဒီစာရေးပြီးတာနဲ့<br>
+      ရင်တွေတောင် ခုန်နေပြီ 😭😂
+    </p>
+    <button onclick="next(5)">နောက်ဆုံးတစ်ခုရှိသေးတယ် 💌</button>
+  </div>
 
-  <button onclick="createLink()">
-    💌 Link ဖန်တီးမယ်
-  </button>
+  <div id="page5" class="hidden">
+    <div class="heart">💗</div>
+    <h1>ဒါလေးတော့... 🥺</h1>
 
-  <div id="shareBox">
+    <p class="final">
+      မငြင်းလိုက်ပါနဲ့နော်... ❤️<br><br>
 
-    <p class="small">
-      🎉 Link ရပြီ!<br>
-      ဒီ Link ကို Copy လုပ်ပြီး ပို့လိုက်ပါ။
+      ငါ့နှလုံးသားက မင်းဆီကို<br>
+      ရောက်ပြီးသွားပြီ။ 😂<br><br>
+
+      ပြန်ယူဖို့လည်း မဖြစ်တော့ဘူး...<br>
+      Return Policy မရှိဘူးတဲ့ 😭😂❤️
     </p>
 
-    <div id="shareLink"></div>
+    <div class="choice">
+      <button onclick="yes()">❤️ အင်း... </button>
+      <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">
+        မစဉ်းစားရသေးဘူး 😳
+      </button>
+    </div>
 
-    <button onclick="copyLink()">
-      📋 Link Copy လုပ်မယ်
-    </button>
+    <p class="small">
+      အဖြေကို အလျင်မလိုပါဘူးနော် 🌷
+    </p>
+  </div>
 
-    <button onclick="openLink()">
-      💗 ကိုယ်တိုင်ကြည့်မယ်
-    </button>
+  <div id="answer" class="hidden">
+    <div class="heart">🥰❤️</div>
+    <h1>ဟာ... တကယ်လား?! 😭</h1>
+    <p class="final">
+      ဒီနေ့ကစပြီး<br>
+      ငါ့အတွက် အမှတ်တရနေ့တစ်နေ့ ဖြစ်သွားပြီ။ ❤️<br><br>
 
+      မင်းကို တန်ဖိုးထားပြီး<br>
+      ပျော်စရာအမှတ်တရလေးတွေ<br>
+      အတူတူဖန်တီးချင်တယ်။ 🌷
+    </p>
   </div>
 
 </div>
-
-
-<!-- PAGE 1 -->
-<div class="card page" id="page1">
-
-  <div class="heart">🌷</div>
-
-  <h1>
-    ဒီစာမျက်နှာလေးက မင်းအတွက် သီးသန့်လုပ်ထားတာပါ 🌷
-  </h1>
-
-  <button onclick="nextPage()">
-    ဆက်သွားမယ် 💗
-  </button>
-
-</div>
-
-
-<!-- PAGE 2 -->
-<div class="card page" id="page2">
-
-  <div class="heart">💗</div>
-
-  <h1>
-    မင်းကို ပြောချင်တဲ့ စာလေးတစ်ခုရှိတယ် 🤭
-  </h1>
-
-  <button onclick="nextPage()">
-    ဆက်သွားမယ် 💕
-  </button>
-
-</div>
-
-
-<!-- PAGE 3 -->
-<div class="card page" id="page3">
-
-  <div class="heart">💖</div>
-
-  <h1>
-    မင်းနဲ့ စကားပြောရတဲ့အချိန်တိုင်း ပျော်မိတယ်။
-  </h1>
-
-  <button onclick="nextPage()">
-    ဆက်သွားမယ် 🌷
-  </button>
-
-</div>
-
-
-<!-- PAGE 4 -->
-<div class="card page" id="page4">
-
-  <div class="heart">🙈</div>
-
-  <h1>
-    တကယ်တော့… မင်းကို သဘောကျနေမိပြီထင်တယ် 🙈
-  </h1>
-
-  <button onclick="nextPage()">
-    ဆက်သွားမယ် 💗
-  </button>
-
-</div>
-
-
-<!-- PAGE 5 -->
-<div class="card page" id="page5">
-
-  <div class="heart">💌</div>
-
-  <h1>
-    နောက်ဆုံးတစ်ခုလေးပဲ… မင်းအတွက် ရေးထားတာပါ 💗
-  </h1>
-
-  <button onclick="showFinal()">
-    💌 ဖွင့်ကြည့်မယ်
-  </button>
-
-</div>
-
-
-<!-- FINAL PAGE -->
-<div class="card page" id="final">
-
-  <div class="heart" id="finalHeart">
-    💗
-  </div>
-
-  <h1 id="finalTitle">
-    မင်းအတွက်ပါ 🌷
-  </h1>
-
-  <p class="message">
-    နောက်ဆုံးအနေနဲ့<br>
-    မင်းအတွက် သီးသန့်စာလေးတစ်ခုရှိတယ် 💕
-  </p>
-
-  <button id="secretButton" onclick="showSecret()">
-    💌 သီးသန့်စာလေးဖွင့်မယ်
-  </button>
-
-  <div id="secret"></div>
-
-</div>
-
 
 <script>
 
-let myName = "";
-let crushName = "";
-let myMessage = "";
-let currentPage = 1;
+function next(number){
 
-
-/* MUSIC */
-
-
-function startMusic(){
-
-  const music =
-    document.getElementById("bgMusic");
-
-  music.volume = 0.35;
-
-  music.play().catch(function(){});
-
-}
-
-
-function toggleMusic(){
-
-  const music =
-    document.getElementById("bgMusic");
-
-  const btn =
-    document.getElementById("musicBtn");
-
-  music.volume = 0.35;
-
-  if(music.paused){
-
-    music.play().then(function(){
-
-      btn.innerHTML = " သီချင်းပိတ်မယ်";
-
-    }).catch(function(){
-
-      alert("သီချင်းဖွင့်လို့မရသေးပါ။ MP3 ဖိုင်နာမည်ကို စစ်ပေးပါ။");
-
-    });
-
-  }else{
-
-    music.pause();
-
-    btn.innerHTML = " သီချင်းဖွင့်မယ်";
-
+  for(let i=1;i<=5;i++){
+    document.getElementById("page"+i).classList.add("hidden");
   }
 
+  document.getElementById("page"+number).classList.remove("hidden");
+
+  hearts();
 }
 
-/* LINK ကနေဝင်လာတာ စစ် */
+function yes(){
 
-function loadFromLink(){
+  document.getElementById("page5").classList.add("hidden");
+  document.getElementById("answer").classList.remove("hidden");
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  const m = params.get("m");
-  const c = params.get("c");
-  const s = params.get("s");
-
-  if(m && c && s){
-
-    myName = m;
-    crushName = c;
-    myMessage = s;
-
-    document
-      .getElementById("create")
-      .classList
-      .remove("active");
-
-    document
-      .getElementById("page1")
-      .classList
-      .add("active");
-
+  for(let i=0;i<20;i++){
+    setTimeout(hearts,i*100);
   }
-
 }
 
+function moveNo(){
 
-/* Floating hearts */
+  const btn=document.getElementById("noBtn");
 
-function createHearts(amount){
+  const x=Math.random()*140-70;
+  const y=Math.random()*100-50;
 
-  const items =
-    ["💗","💕","💖","❤️","💞"];
-
-  for(
-    let i = 0;
-    i < amount;
-    i++
-  ){
-
-    const heart =
-      document.createElement("div");
-
-    heart.className =
-      "flying";
-
-    heart.innerHTML =
-      items[
-        Math.floor(
-          Math.random() *
-          items.length
-        )
-      ];
-
-    heart.style.left =
-      Math.random() * 100 + "vw";
-
-    heart.style.fontSize =
-      (15 + Math.random() * 25) + "px";
-
-    heart.style.animationDuration =
-      (4 + Math.random() * 5) + "s";
-
-    document.body.appendChild(
-      heart
-    );
-
-    setTimeout(
-      function(){
-        heart.remove();
-      },
-      9000
-    );
-
-  }
-
+  btn.style.transform=
+    "translate("+x+"px,"+y+"px)";
 }
 
+function hearts(){
 
-/* Stars */
+  const h=document.createElement("div");
 
-function createStars(amount){
+  h.className="float";
 
-  const items =
-    ["✨","⭐","✦","⋆"];
+  const emojis=["❤️","💕","💗","💖","🌷","🥰","✨"];
 
-  for(
-    let i = 0;
-    i < amount;
-    i++
-  ){
+  h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
 
-    const star =
-      document.createElement("div");
+  h.style.left=Math.random()*100+"vw";
 
-    star.className =
-      "star";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
 
-    star.innerHTML =
-      items[
-        Math.floor(
-          Math.random() *
-          items.length
-        )
-      ];
+  document.body.appendChild(h);
 
-    star.style.left =
-      Math.random() * 100 + "vw";
-
-    star.style.fontSize =
-      (10 + Math.random() * 15) + "px";
-
-    star.style.animationDuration =
-      (5 + Math.random() * 6) + "s";
-
-    document.body.appendChild(
-      star
-    );
-
-    setTimeout(
-      function(){
-        star.remove();
-      },
-      12000
-    );
-
-  }
-
+  setTimeout(()=>{
+    h.remove();
+  },8000);
 }
 
-
-/* Flowers */
-
-function createFlowers(amount){
-
-  const items =
-    ["🌸","🌷","🌺","🌼"];
-
-  for(
-    let i = 0;
-    i < amount;
-    i++
-  ){
-
-    const flower =
-      document.createElement("div");
-
-    flower.className =
-      "flower";
-
-    flower.innerHTML =
-      items[
-        Math.floor(
-          Math.random() *
-          items.length
-        )
-      ];
-
-    flower.style.left =
-      Math.random() * 100 + "vw";
-
-    flower.style.fontSize =
-      (14 + Math.random() * 18) + "px";
-
-    flower.style.animationDuration =
-      (5 + Math.random() * 6) + "s";
-
-    document.body.appendChild(
-      flower
-    );
-
-    setTimeout(
-      function(){
-        flower.remove();
-      },
-      12000
-    );
-
-  }
-
-}
-
-
-/* Create link */
-
-function createLink(){
-
-  startMusic();
-
-  createHearts(8);
-  createStars(6);
-
-  myName =
-    document
-      .getElementById("myName")
-      .value
-      .trim();
-
-  crushName =
-    document
-      .getElementById("crushName")
-      .value
-      .trim();
-
-  myMessage =
-    document
-      .getElementById("myMessage")
-      .value
-      .trim();
-
-  if(
-    myName === "" ||
-    crushName === "" ||
-    myMessage === ""
-  ){
-
-    alert(
-      "နာမည် ၂ ခုနဲ့ သီးသန့်စာလေး အားလုံးထည့်ပေးပါ 💗"
-    );
-
-    return;
-
-  }
-
-  const base =
-    window.location.origin +
-    window.location.pathname;
-
-  const link =
-    base +
-    "?m=" +
-    encodeURIComponent(myName) +
-    "&c=" +
-    encodeURIComponent(crushName) +
-    "&s=" +
-    encodeURIComponent(myMessage);
-
-  document
-    .getElementById("shareLink")
-    .innerText = link;
-
-  document
-    .getElementById("shareBox")
-    .style.display = "block";
-
-}
-
-
-/* Copy */
-
-function copyLink(){
-
-  const link =
-    document
-      .getElementById("shareLink")
-      .innerText;
-
-  navigator.clipboard
-    .writeText(link)
-    .then(function(){
-
-      createHearts(12);
-
-      alert(
-        "Link Copy လုပ်ပြီးပြီ 💗"
-      );
-
-    })
-    .catch(function(){
-
-      alert(
-        "Link ကို ဖိထားပြီး Copy လုပ်ပါ 💗"
-      );
-
-    });
-
-}
-
-
-/* Open */
-
-function openLink(){
-
-  const link =
-    document
-      .getElementById("shareLink")
-      .innerText;
-
-  window.location.href = link;
-
-}
-
-
-/* Next page */
-
-function nextPage(){
-
-  startMusic();
-
-  createHearts(5);
-  createStars(3);
-
-  const oldPage =
-    document.getElementById(
-      "page" + currentPage
-    );
-
-  oldPage.classList.remove(
-    "active"
-  );
-
-  currentPage++;
-
-  const newPage =
-    document.getElementById(
-      "page" + currentPage
-    );
-
-  newPage.classList.add(
-    "active"
-  );
-
-}
-
-
-/* Final */
-
-function showFinal(){
-
-  startMusic();
-
-  createHearts(15);
-  createStars(10);
-  createFlowers(8);
-
-  document
-    .getElementById("page5")
-    .classList
-    .remove("active");
-
-  const finalPage =
-    document.getElementById("final");
-
-  finalPage.classList.add(
-    "active"
-  );
-
-  finalPage.classList.add(
-    "finalReveal"
-  );
-
-  document
-    .getElementById("finalTitle")
-    .innerHTML =
-    crushName +
-    " အတွက်ပါ 🌷";
-
-  window.scrollTo(
-    0,
-    0
-  );
-
-}
-
-
-/* Secret */
-
-function showSecret(){
-
-  startMusic();
-
-  createHearts(25);
-  createStars(15);
-  createFlowers(15);
-
-  const secret =
-    document.getElementById(
-      "secret"
-    );
-
-  secret.style.display =
-    "block";
-
-  secret.innerHTML =
-    crushName +
-    " ရေ 💕<br><br>" +
-    myMessage.replace(
-      /\n/g,
-      "<br>"
-    ) +
-    "<br><br>" +
-    "💗 💕 💖 💕 💗";
-
-  document
-    .getElementById(
-      "secretButton"
-    )
-    .innerHTML =
-    "💗 စာလေးဖွင့်ပြီးပြီ";
-
-  document
-    .getElementById(
-      "finalHeart"
-    )
-    .innerHTML =
-    "💖";
-
-  setTimeout(
-    function(){
-
-      secret.scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
-
-    },
-    300
-  );
-
-}
-
-
-/* Touch sparkle */
-
-document.addEventListener(
-  "click",
-  function(e){
-
-    const sparkle =
-      document.createElement(
-        "div"
-      );
-
-    sparkle.className =
-      "sparkle";
-
-    sparkle.innerHTML =
-      ["✨","💗","💕","✦"][
-        Math.floor(
-          Math.random() * 4
-        )
-      ];
-
-    sparkle.style.left =
-      e.clientX + "px";
-
-    sparkle.style.top =
-      e.clientY + "px";
-
-    document.body.appendChild(
-      sparkle
-    );
-
-    setTimeout(
-      function(){
-        sparkle.remove();
-      },
-      700
-    );
-
-  }
-);
-
-
-/* Start */
-
-loadFromLink();
+setInterval(hearts,900);
 
 </script>
 
